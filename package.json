@@ -7,11 +7,14 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "prepare": "nuxt prepare",
     "postinstall": "nuxt prepare"
   },
+  "devDependencies": {
+    "nuxt": "^3.11.2"
+  },
   "dependencies": {
-    "nuxt": "^3.11.2",
-    "vue": "^3.4.27",
-    "vue-router": "^4.3.2"
+    "@iconoir/vue": "^7.7.0",
+    "iconoir": "^7.7.0"
   }
 }

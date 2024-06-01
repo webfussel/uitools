@@ -1,0 +1,62 @@
+.Header {
+    --padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 20000;
+
+    & .nav-icon {
+        position: relative;
+        top: -2px;
+    }
+
+    & > .top {
+        display: flex;
+        justify-content: flex-start;
+        position: relative;
+        z-index: 2;
+
+        & > h1 {
+            margin: 0;
+            padding: var(--padding);
+            padding-left: calc(calc(6rem) + 10px);
+            cursor: default;
+            user-select: none;
+
+            & > img {
+                height: 40px;
+            }
+        }
+    }
+
+
+    & nav {
+        padding: 0 var(--padding);
+        font-size: 1rem;
+        line-height: 1.5;
+
+        & ul {
+            display: flex;
+            list-style: none;
+            gap: 6rem;
+            height: 100%;
+
+            & li {
+                display: flex;
+
+                & a {
+                    display: flex;
+                    align-items: center;
+                    gap: .5rem;
+                    transition: all 0.2s ease-in-out;
+                    border-bottom: 2px solid transparent;
+
+                    &.active {
+                        color: var(--color-blue);
+                        border-bottom-color: var(--color-blue);
+                    }
+                }
+            }
+        }
+    }
+}
