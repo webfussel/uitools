@@ -16,6 +16,11 @@ const getIcon = async () => {
     case 'colors': return base.ColorFilter
     case 'fonts': return base.TextArrowsUpDown
     case 'spacing': return base.AlignHorizontalSpacing
+    case 'refresh': return base.RefreshDouble
+    case 'load': return base.Upload
+    case 'save': return base.Download
+    case 'share': return base.ShareAndroid
+    case 'close': return base.Xmark
   }
 }
 

@@ -1,6 +1,6 @@
 <template>
   <header class="Header">
-    <div class="top z-3">
+    <div class="top z-3 content-paddings">
       <h1>
         <span class="highlight">UI</span>Tools
       </h1>

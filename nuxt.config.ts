@@ -5,6 +5,11 @@ export default defineNuxtConfig({
     '~/assets/css/fonts.css',
     '~/assets/css/general.css',
     '~/assets/css/components/Header.css',
+    '~/assets/css/components/Chip.css',
+    '~/assets/css/components/InputBase.css',
+    '~/assets/css/components/TextField.css',
+    '~/assets/css/components/Toolbar.css',
+    '~/assets/css/components/IconToolbar.css',
   ],
   app: {
     head: {

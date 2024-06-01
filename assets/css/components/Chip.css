@@ -1,0 +1,28 @@
+.Chip {
+    font-size: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--color-blue);
+    border-radius: 9999px;
+    color: var(--color-white);
+    padding: .3em 2.5em .3em 1em;
+    user-select: none;
+
+    & button {
+        all: unset;
+        display: flex;
+        align-items: center;
+        position: absolute;
+        aspect-ratio: 1/1;
+        right: 0;
+        padding: .2em;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: 150ms ease-in-out;
+
+        &:hover {
+            background: var(--color-blue-dark);
+        }
+    }
+}
