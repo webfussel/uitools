@@ -11,9 +11,7 @@
             justify-content: space-between;
             align-items: center;
 
-            > div {
-                width: 33%;
-
+            > span, > div {
                 &:first-child {
                     text-align: left;
                 }

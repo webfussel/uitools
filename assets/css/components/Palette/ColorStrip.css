@@ -22,7 +22,22 @@
         }
     }
 
+    & .part {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 250px;
+
+        & .Tip {
+            &.active {
+                scale: 1;
+            }
+        }
+    }
+
     & .interactive {
         cursor: pointer;
+        width: max-content;
     }
 }

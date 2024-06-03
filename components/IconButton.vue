@@ -3,7 +3,7 @@
     <span class="icon">
       <Icon :name="name" />
     </span>
-    <span class="tip">{{tip}}</span>
+    <span class="Tip">{{tip}}</span>
   </button>
 </template>
 

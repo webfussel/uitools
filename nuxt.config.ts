@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     '~/assets/css/components/Input/TextField.css',
     '~/assets/css/components/Toolbar.css',
     '~/assets/css/components/IconButton.css',
+    '~/assets/css/components/Tip.css',
     '~/assets/css/components/Palette/CssCode.css',
     '~/assets/css/components/Palette/ColorStrip.css',
     '~/assets/css/components/Palette/ColorPalette.css',

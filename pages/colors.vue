@@ -23,7 +23,6 @@
       <div class="Card" v-for="card in palettes">
         <PaletteCssCode
             prefix="bla"
-            type="hex"
             :shades="getShadesWithZero(shades)"
             :base-color="card.baseColor"
         />
