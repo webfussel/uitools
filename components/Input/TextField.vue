@@ -4,7 +4,7 @@
       <span v-if="icon" class="prefix">
         <Icon :name="icon"/>
       </span>
-      <input :min="min" :maxlength="maxLength" :type="type" placeholder=" " v-model="value" @input="$emit('change')" :disabled="disabled"/>
+      <input @keyup.enter="$emit('enterAction')" :min="min" :maxlength="maxLength" :type="type" :placeholder="placeholder || ' '" v-model="value" @input="$emit('change')" :disabled="disabled"/>
       <label :class="{'move-left': !!icon}">{{ label }} <span class="req" v-if="required">*</span></label>
       <button v-if="action && action.show" class="suffix" @click="action.execute()">
         <Icon :name="action.icon"/>
@@ -20,6 +20,7 @@
 interface Props {
   modelValue: string | number | Date
   label: string
+  placeholder ?: string
   icon?: string
   type?: string
   required?: boolean
@@ -34,7 +35,7 @@ interface Props {
   }
 }
 
-const emit = defineEmits(['update:modelValue', 'blur', 'change'])
+const emit = defineEmits(['update:modelValue', 'blur', 'change', 'enterAction'])
 
 const props = withDefaults(defineProps<Props>(), {
   type: 'text',
