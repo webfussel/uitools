@@ -9,7 +9,8 @@ export default defineNuxtConfig({
     '~/assets/css/components/InputBase.css',
     '~/assets/css/components/TextField.css',
     '~/assets/css/components/Toolbar.css',
-    '~/assets/css/components/IconToolbar.css',
+    '~/assets/css/components/IconButton.css',
+    '~/assets/css/pages/colors.css',
   ],
   app: {
     head: {

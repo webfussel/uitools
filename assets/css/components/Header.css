@@ -4,6 +4,7 @@
     flex-direction: column;
     position: relative;
     z-index: 20000;
+    background: var(--color-white-pure);
 
     & .nav-icon {
         position: relative;

@@ -1,0 +1,12 @@
+.Colors {
+    & .palette-actions {
+        display: flex;
+        gap: 1rem;
+    }
+
+    & .palette-shades {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}
