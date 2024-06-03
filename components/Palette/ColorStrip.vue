@@ -1,21 +1,22 @@
 <template>
   <div class="ColorStrip" :style="{ backgroundColor: color, color: contrast}">
-    <span v-if="!!name" class="part">{{name}}</span>
-    <span v-if="!name" class="part">Base</span>
-    <div v-if="!!name" class="part">
+    <span class="part">{{name}}</span>
+    <div v-if="name !== 'Base'" class="part">
       <span class="interactive" @click="event => copy(event, 'color')">{{color}}</span>
       <span class="Tip" :class="{'active': successMessageColor}">Copied!</span>
       <span class="Tip" :class="{'active': failMessageColor}">Couldn't copy :(</span>
     </div>
-    <div v-if="!name" class="container">
-      <input v-model="currentColor" @change="changeColor()" maxlength="7" />
-      <label>
-        <Icon :name="name" />
-        <input type="color" v-model="currentColor" @change="changeColor()" />
+    <div v-else class="container">
+      <label :style="{color: contrast}">
+        <span :style="{color: contrast}">{{currentColor}}</span>
+        <span>
+          <Icon name="picker" height="2em" />
+          <input type="color" v-model="currentColor" @input="changeColor" />
+        </span>
       </label>
     </div>
     <div class="part">
-      <span  class="interactive" @click="event => copy(event, 'contrast')">{{contrast}}</span>
+      <span class="interactive" @click="event => copy(event, 'contrast')">{{contrast}}</span>
       <span class="Tip" :class="{'active': successMessageContrast}">Copied!</span>
       <span class="Tip" :class="{'active': failMessageContrast}">Couldn't copy :(</span>
     </div>
@@ -33,7 +34,6 @@ const props = defineProps<Props>()
 const emit = defineEmits(['colorChange'])
 
 const currentColor = ref(props.color)
-
 const changeColor = () => {
   emit('colorChange', currentColor.value)
 }

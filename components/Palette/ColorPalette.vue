@@ -1,12 +1,21 @@
 <template>
-  <section class="ColorPalette" :class="{ rows: !grid}">
-    <PaletteColorStrip
-        v-for="(color, index) of generateColors(baseColor, shades)"
-        :color="color.color"
-        :contrast="color.contrast"
-        :name="getShadeName(shades[index])"
-        @color-change="changeColor"
-    />
+  <section class="ColorPalette">
+    <section class="options">
+      <div class="top">
+        <div />
+        <IconButton :name="grid ? 'stripes' : 'grid'" tip="Change View" height="2em" @click="changeView" />
+      </div>
+    </section>
+    <div class="colors" :class="{ rows: !grid }">
+      <PaletteColorStrip
+          v-for="(color, index) of generateColors(baseColorToUse, shades)"
+          :key="index"
+          :color="color.color"
+          :contrast="color.contrast"
+          :name="getShadeName(shades[index])"
+          @color-change="changeColor"
+      />
+    </div>
   </section>
 </template>
 
@@ -14,15 +23,19 @@
 import { getShadeName } from '~/composables/color'
 
 type Props = {
-  grid: boolean
   shades: number[]
   baseColor: string
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['changeColor'])
 
-const changeColor = (data: string) => {
-  emit('changeColor', data)
+const grid = ref(false)
+const changeView = () => grid.value = !grid.value
+
+const baseColorToUse = ref(props.baseColor)
+const changeColor = (color: string) => {
+  baseColorToUse.value = color
+  emit('changeColor', color)
 }
 
 </script>

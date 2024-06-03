@@ -1,23 +1,25 @@
 .ColorPalette {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    & .colors {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 
-    &.rows {
-        display: flex;
-        flex-direction: column;
+        &.rows {
+            display: flex;
+            flex-direction: column;
 
-        & .ColorStrip {
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
+            & .ColorStrip {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
 
-            > span, > div {
-                &:first-child {
-                    text-align: left;
-                }
+                & > span, & > div {
+                    &:first-child {
+                        text-align: left;
+                    }
 
-                &:last-child {
-                    text-align: right;
+                    &:last-child {
+                        text-align: right;
+                    }
                 }
             }
         }

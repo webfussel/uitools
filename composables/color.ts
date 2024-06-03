@@ -24,9 +24,10 @@ export const hexToRgb = (hex : string) => {
 }
 
 export const generateColors = (color: string, shades: number[]) => {
+  let useColor = color.replace('#', '')
   return sortShades(shades).map(shade => {
     if (shade === 0) return {
-      color: `#${color}`, contrast: generateContrast(color),
+      color: `#${useColor}`, contrast: generateContrast(useColor),
     }
 
     let additionalColor = 0xff;
@@ -37,11 +38,11 @@ export const generateColors = (color: string, shades: number[]) => {
       calc = -calc;
     }
 
-    color = color.trim().replace('#', '')
-    color = color.length === 6 ? color : [...color].reduce((all, current) => all + current + current, '')
+    useColor = useColor.trim().replace('#', '')
+    useColor = useColor.length === 6 ? useColor : [...useColor].reduce((all, current) => all + current + current, '')
 
-    const regex = new RegExp(`.{${color.length / 3}}`, 'g');
-    const rgb = color.match(regex) || [];
+    const regex = new RegExp(`.{${useColor.length / 3}}`, 'g');
+    const rgb = useColor.match(regex) || [];
     const rgbCalc = rgb.map(rgbColor => {
       const calculated = Math.round(additionalColor * calc + parseInt(rgbColor, 16) * (1 - calc)).toString(16)
       return calculated.padStart(2, '0');

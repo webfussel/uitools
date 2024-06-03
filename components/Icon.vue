@@ -29,9 +29,17 @@ const getIcon = async () => {
     case 'palette': return base.Palette
     case 'code': return base.Code
     case 'eye': return base.Eye
+    case 'stripes': return base.TableRows
+    case 'grid': return base.ViewGrid
+    case 'picker': return base.ColorPicker
+    case 'check': return base.CheckCircle
     default: return base.QuestionMark
   }
 }
 
-const icon = await getIcon()
+const icon = ref(await getIcon())
+
+watch(() => props.name, async () => {
+  icon.value = await getIcon()
+})
 </script>

@@ -20,35 +20,13 @@
     </Toolbar>
 
     <div class="grid">
-      <div class="Card z-2" v-for="(card, index) in palettes" :key="card.baseColor">
-        <header>
-          <button @click="scrollCard(index, 0)">
-            <Icon name="palette" />
-            <span>Palette</span>
-          </button>
-          <button @click="scrollCard(index, 1)">
-            <Icon name="code" />
-            <span>Code</span>
-          </button>
-          <button @click="scrollCard(index, 2)">
-            <Icon name="eye" />
-            <span>Examples</span>
-          </button>
-        </header>
-        <div class="scrollable">
-          <div class="scroll-container" ref="scrollable">
-            <PaletteColorPalette
-                :grid="false"
-                :base-color="card.baseColor"
-                :shades="getShadesWithZero(shades)"
-            />
-            <PaletteCssCode
-                :shades="getShadesWithZero(shades)"
-                :base-color="card.baseColor"
-            />
-          </div>
-        </div>
-      </div>
+      <TabCard
+          v-for="(palette, index) in palettes"
+          :key="palette.baseColor"
+          :base-color="palette.baseColor"
+          :shades="getShadesWithZero(shades)"
+          @change-color="color => changeColor(color, index)"
+      />
     </div>
   </section>
 </template>
@@ -66,16 +44,8 @@ const newPaletteColor = ref('')
 const shadesField = ref(0)
 const shades = ref([-60, -45, -30, -15, 15, 30, 45, 60])
 
+let palettesToSave : Palette[] = []
 const palettes = ref<Palette[]>([])
-const scrollable = ref<HTMLElement[] | null>()
-
-const scrollCard = (card: number, section: number): void => {
-  const container = scrollable.value![card]
-  const parent = container.parentElement!
-
-  const width = parent.getBoundingClientRect().width
-  container.style.left = `-${width * section}px`
-}
 
 onMounted(() => {
   const url = new URL(location.href)
@@ -86,6 +56,7 @@ onMounted(() => {
       const loaded = JSON.parse(decoded)
       shades.value = loaded.shades
       palettes.value = loaded.palettes as Palette[]
+      palettesToSave = loaded.palettes as Palette[]
     } catch (e) {
       generateRandom()
     }
@@ -94,12 +65,18 @@ onMounted(() => {
   }
 })
 
+const changeColor = (color : string, paletteIndex : number) => {
+  palettesToSave[paletteIndex].baseColor = color
+}
+
 const generateRandom = () => {
   shades.value = [-60, -45, -30, -15, 15, 30, 45, 60]
-  palettes.value = [{
+  const pals = [{
     name: 'Some Fancy Color',
     baseColor: generateRandomColor()
   }]
+  palettes.value = pals
+  palettesToSave = pals
 }
 
 const generateRandomColor = () => {
@@ -112,6 +89,7 @@ const loadFromStorage = () => {
   if (storage.shades) {
     shades.value = storage.shades
     palettes.value = storage.palettes
+    palettesToSave = storage.palettes
   }
 }
 
@@ -122,7 +100,7 @@ const saveToStorage = () => {
 
 const generateDataString = () => JSON.stringify({
   shades: shades.value,
-  palettes: palettes.value
+  palettes: palettesToSave
 })
 
 const generateUrl = () => {
