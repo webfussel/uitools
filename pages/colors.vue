@@ -20,9 +20,8 @@
     </Toolbar>
 
     <div>
-      <div class="Card" v-for="card in palettes">
+      <div class="Card" v-for="card in palettes" :key="card.baseColor">
         <PaletteCssCode
-            prefix="bla"
             :shades="getShadesWithZero(shades)"
             :base-color="card.baseColor"
         />

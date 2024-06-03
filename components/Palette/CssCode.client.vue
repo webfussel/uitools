@@ -15,10 +15,11 @@ import { getShadeName } from '~/composables/color'
 type CodeStyle = 'hex' | 'HEX' | 'rgb'
 
 type Props = {
-  prefix: string
   baseColor: string
   shades: number[]
 }
+
+const prefix = ref('primary')
 
 const props = withDefaults(defineProps<Props>(), {
   shades: () => [],
@@ -43,15 +44,14 @@ const generateCSS = (codeStyle : CodeStyle) : string => {
     const col = getCodeStyle(color.color, codeStyle)
     const colContrast = getCodeStyle(color.contrast, codeStyle)
 
-    let line = `    --color${props.prefix && `-${props.prefix}`}${shadeName && `-${shadeName}`}: ${col};\n`
-    line += `    --color${props.prefix && `-${props.prefix}`}${shadeName && `-${shadeName}`}-contrast: ${colContrast};`
+    let line = `    --color${prefix.value && `-${prefix.value}`}${shadeName && `-${shadeName}`}: ${col};\n`
+    line += `    --color${prefix.value && `-${prefix.value}`}${shadeName && `-${shadeName}`}-contrast: ${colContrast};`
     return line
   }).join('\n')
   ret += '\n}'
   emit('codeChange', ret)
   return ret
 }
-
 
 const code = ref(generateCSS('hex'))
 const codeStyle = ref<CodeStyle>('hex')
