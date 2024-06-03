@@ -1,5 +1,5 @@
 <template>
-  <button class="IconButton">
+  <button class="IconButton" @click="$emit('click')">
     <span class="icon">
       <Icon :name="name" />
     </span>
@@ -14,5 +14,6 @@ type Props = {
 }
 
 defineProps<Props>()
+defineEmits(['click'])
 
 </script>

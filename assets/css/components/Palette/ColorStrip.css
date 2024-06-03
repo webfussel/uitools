@@ -1,0 +1,28 @@
+.ColorStrip {
+    padding: 1.5em;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 100%;
+    align-content: center;
+    justify-content: center;
+    gap: 0.5em;
+
+    & .container {
+        display: flex;
+        background: rgba(255,255,255,0.4);
+        color: black;
+        padding: 1em;
+        border-radius: 5px;
+
+        & input[type="color"] {
+            height: 0;
+            width: 0;
+            opacity: 0;
+        }
+    }
+
+    & .interactive {
+        cursor: pointer;
+    }
+}
