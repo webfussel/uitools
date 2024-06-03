@@ -1,0 +1,45 @@
+.Card {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    & header {
+        display: flex;
+
+        & > button {
+            all: unset;
+            flex: 1;
+            padding: .5em 1.5em;
+            background: var(--color-blue);
+            color: var(--color-white);
+            cursor: pointer;
+            transition: 100ms ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+
+            &:hover {
+                background: var(--color-blue-dark);
+            }
+        }
+    }
+
+    & .scrollable {
+        width: 100%;
+        overflow: hidden;
+
+        & .scroll-container {
+            transition: left 250ms ease-in-out;
+            position: relative;
+            display: flex;
+            left: 0;
+
+            & > * {
+                width: 100%;
+                flex-shrink: 0;
+                flex-grow: 0;
+            }
+        }
+    }
+}

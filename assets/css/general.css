@@ -49,6 +49,7 @@
     --color-grey-dark: #666;
     --color-grey-darker: #333;
 
+    --color-blue-light: #339db0;
     --color-blue: #2b8494;
     --color-blue-dark: #16444d;
     --color-blue-black: #07161a;
@@ -107,6 +108,13 @@ ul {
 
 span.highlight {
     color: var(--color-blue);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    place-items: stretch;
+    gap: 2rem;
 }
 
 .card {

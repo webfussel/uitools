@@ -1,11 +1,17 @@
 <template>
-  <div>
-    <button @click="changeCodeStyle('hex')">hex</button>
-    <button @click="changeCodeStyle('HEX')">HEX</button>
-    <button @click="changeCodeStyle('rgb')">rgb</button>
-  </div>
   <section class="CssCode">
-    <highlightjs class="width" autodetect :code="code" />
+    <section class="options">
+      <div class="style-buttons">
+        <button @click="changeCodeStyle('hex')">hex</button>
+        <button @click="changeCodeStyle('HEX')">HEX</button>
+        <button @click="changeCodeStyle('rgb')">rgb</button>
+      </div>
+      <InputTextField label="Prefix" v-model="prefix" @change="regenerate" />
+      <IconButton name="copy" tip="Copy Code" height="2em" />
+    </section>
+    <div class="code-wrapper">
+      <highlightjs class="width" autodetect :code="code" />
+    </div>
   </section>
 </template>
 
@@ -57,6 +63,11 @@ const code = ref(generateCSS('hex'))
 const codeStyle = ref<CodeStyle>('hex')
 const changeCodeStyle = (style : CodeStyle) => {
   codeStyle.value = style
+  regenerate()
+}
+
+const regenerate = () => {
   code.value = generateCSS(codeStyle.value)
 }
+
 </script>

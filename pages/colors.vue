@@ -19,17 +19,35 @@
       </div>
     </Toolbar>
 
-    <div>
-      <div class="Card" v-for="card in palettes" :key="card.baseColor">
-        <PaletteCssCode
-            :shades="getShadesWithZero(shades)"
-            :base-color="card.baseColor"
-        />
-        <PaletteColorPalette
-            :grid="false"
-            :base-color="card.baseColor"
-            :shades="getShadesWithZero(shades)"
-        />
+    <div class="grid">
+      <div class="Card z-2" v-for="(card, index) in palettes" :key="card.baseColor">
+        <header>
+          <button @click="scrollCard(index, 0)">
+            <Icon name="palette" />
+            <span>Palette</span>
+          </button>
+          <button @click="scrollCard(index, 1)">
+            <Icon name="code" />
+            <span>Code</span>
+          </button>
+          <button @click="scrollCard(index, 2)">
+            <Icon name="eye" />
+            <span>Examples</span>
+          </button>
+        </header>
+        <div class="scrollable">
+          <div class="scroll-container" ref="scrollable">
+            <PaletteColorPalette
+                :grid="false"
+                :base-color="card.baseColor"
+                :shades="getShadesWithZero(shades)"
+            />
+            <PaletteCssCode
+                :shades="getShadesWithZero(shades)"
+                :base-color="card.baseColor"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -49,6 +67,15 @@ const shadesField = ref(0)
 const shades = ref([-60, -45, -30, -15, 15, 30, 45, 60])
 
 const palettes = ref<Palette[]>([])
+const scrollable = ref<HTMLElement[] | null>()
+
+const scrollCard = (card: number, section: number): void => {
+  const container = scrollable.value![card]
+  const parent = container.parentElement!
+
+  const width = parent.getBoundingClientRect().width
+  container.style.left = `-${width * section}px`
+}
 
 onMounted(() => {
   const url = new URL(location.href)
