@@ -1,7 +1,7 @@
 <template>
   <button class="IconButton" @click="$emit('click')">
     <span class="icon">
-      <Icon :name :height />
+      <Icon :name :size />
     </span>
     <span class="Tip">{{tip}}</span>
   </button>
@@ -10,7 +10,7 @@
 <script setup lang="ts">
 type Props = {
   name: string
-  height?: string
+  size?: string
   tip: string
 }
 

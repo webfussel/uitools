@@ -68,3 +68,46 @@ export const getShadeName = (shade : number) => {
   }
   return shade > 0 ? `l-${shade}` : `d-${Math.abs(shade)}`
 }
+
+const luminance = (r: number, g: number, b: number): number => {
+  const a = [r, g, b].map(v => {
+    v /= 255;
+    return v <= 0.03928
+      ? v / 12.92
+      : Math.pow((v + 0.055) / 1.055, 2.4)
+  });
+  return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722
+}
+
+const calculateRatio = (color1: string, color2: string) : number => {
+  // read the colors and transform them into rgb format
+  const [r1, g1, b1] = hexToRgb(color1)
+  const [r2, g2, b2] = hexToRgb(color2)
+
+  // calculate the relative luminance
+  const color1luminance = luminance(r1, g1, b1)
+  const color2luminance = luminance(r2, g2, b2)
+
+  // calculate the color contrast ratio
+  return color1luminance > color2luminance
+    ? ((color2luminance + 0.05) / (color1luminance + 0.05))
+    : ((color1luminance + 0.05) / (color2luminance + 0.05))
+}
+
+type CheckComplianceReturnType = {
+  'AA Large': boolean
+  'AA Normal': boolean
+  'AAA Large': boolean
+  'AAA Normal': boolean
+}
+
+export const checkCompliance = (color1: string, color2: string) : CheckComplianceReturnType => {
+  console.log('CHECK COMPLIANCE', color1, color2)
+  const ratio = calculateRatio(color1, color2)
+  return {
+    'AA Large': ratio < 1 / 3,
+    'AA Normal': ratio < 1 / 4,
+    'AAA Large': ratio < 1 / 4.5,
+    'AAA Normal': ratio < 1 / 7,
+  }
+}

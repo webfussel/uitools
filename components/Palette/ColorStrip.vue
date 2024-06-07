@@ -10,7 +10,7 @@
       <label :style="{color: contrast}">
         <span :style="{color: contrast}">{{currentColor}}</span>
         <span>
-          <Icon name="picker" height="2em" />
+          <Icon name="picker" size="1.5em" />
           <input type="color" v-model="currentColor" @input="changeColor" />
         </span>
       </label>

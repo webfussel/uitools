@@ -17,12 +17,18 @@
             :shades="shades"
             :base-color="baseColor"
         />
+        <Contrast
+            :shades="shades"
+            :base-color="baseColor"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import Contrast from '~/components/Palette/Contrast.vue'
+
 type Props = {
   baseColor: string
   shades: number[]
@@ -50,7 +56,7 @@ const tabs = [
   },
   {
     icon: 'eye',
-    name: 'Examples'
+    name: 'Contrast'
   }
 ]
 

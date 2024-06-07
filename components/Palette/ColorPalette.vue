@@ -1,6 +1,6 @@
 <template>
   <section class="ColorPalette">
-    <div class="colors" :class="{ rows: !grid }">
+    <div class="colors">
       <PaletteColorStrip
           v-for="(color, index) of generateColors(baseColorToUse, shades)"
           :key="index"
@@ -22,9 +22,6 @@ type Props = {
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['changeColor'])
-
-const grid = ref(false)
-const changeView = () => grid.value = !grid.value
 
 const baseColorToUse = ref(props.baseColor)
 const changeColor = (color: string) => {

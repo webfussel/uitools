@@ -7,7 +7,7 @@
           <button @click="changeCodeStyle('HEX')">HEX</button>
           <button @click="changeCodeStyle('rgb')">rgb</button>
         </div>
-        <IconButton @click="copy" :name="copying ? 'check' : 'copy'" :tip="copying ? 'Copied!' : 'Copy Code'" height="2em" />
+        <IconButton @click="copy" :name="copying ? 'check' : 'copy'" :tip="copying ? 'Copied!' : 'Copy Code'" size="2em" />
       </div>
       <InputTextField label="Prefix" v-model="prefix" @change="regenerate" />
     </section>

@@ -1,16 +1,15 @@
 <template>
-  <component :is="icon" :height="height" aria-hidden="true" />
+  <component :is="icon" :height="size" :width="size" aria-hidden="true" />
 </template>
 
 <script setup lang="ts">
-
 type Props = {
   name: string
-  height?: string
+  size?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  height: '1em'
+  size: '1em'
 })
 
 const getIcon = async () => {

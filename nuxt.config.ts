@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     '~/assets/css/components/Palette/CssCode.css',
     '~/assets/css/components/Palette/ColorStrip.css',
     '~/assets/css/components/Palette/ColorPalette.css',
+    '~/assets/css/components/Palette/Contrast.css',
     '~/assets/css/pages/colors.css',
   ],
   app: {
