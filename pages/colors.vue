@@ -15,7 +15,7 @@
     <Toolbar headline="Shades" :spread="true">
       <template #top>
         <InputTextField label="Add Shade" @enterAction="shadeButtonAction.execute()" v-model="shadesField" :action="shadeButtonAction" placeholder="-100 >=< 100">
-          <span class="error">{{error}}</span>
+          <span class="error">{{shadesMessage}}</span>
         </InputTextField>
       </template>
       <template #bottom>
@@ -139,22 +139,22 @@ const paletteActions = [
   },
 ]
 
-const error = ref('')
+const shadesMessage = ref('')
 
 const addChip = () => {
   const parsed = +shadesField.value
   if (isNaN(parsed) || parsed < -100 || parsed > 100) {
-    error.value = 'Not a valid number!'
+    shadesMessage.value = 'Not a valid number!'
     return
   }
 
   if (shades.value.includes(parsed)) {
-    error.value = 'Already added!'
+    shadesMessage.value = 'Already added!'
     return
   }
 
   if (parsed === 0) {
-    error.value = '0 is Base Color!'
+    shadesMessage.value = '0 is Base Color!'
     return
   }
 
@@ -163,6 +163,7 @@ const addChip = () => {
   shadesNew.sort((a, b) => a - b)
   shades.value = sortShades(shadesNew)
   shadesField.value = 0
+  shadesMessage.value = ''
 }
 const removeChip = (index : number) => shades.value.splice(index, 1)
 

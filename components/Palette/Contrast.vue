@@ -28,12 +28,18 @@
       </div>
     </header>
     <main>
-      <ul class="compliance">
-        <li class="compliance-level" v-for="comp in compliance" :class="{pass: comp[1]}">
-          <span>{{comp[0]}}</span>
-          <span>{{comp[1] ? 'PASS' : 'FAIL'}}</span>
-        </li>
-      </ul>
+      <header>
+        <span>Contrast based on <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html">WCAG<Icon name="external"/></a></span>
+        <ul class="compliance">
+          <li class="compliance-level" v-for="comp in compliance" :class="{pass: comp[1]}">
+            <span>{{comp[0]}}:</span>
+            <div :style="{color: comp[1] ? 'var(--color-green)' : 'var(--color-red)'}">
+              <Icon :name="comp[1] ? 'pass' : 'fail'" />
+              <span>{{comp[1] ? 'Pass' : 'Fail'}}</span>
+            </div>
+          </li>
+        </ul>
+      </header>
       <div class="compliance-components" :style="{ 'background-color': isHex(customBg) ? `#${customBg}` : currentBg.color}">
         <div>
           <button :style="{'background': getColorOfShade().color, 'color': getColorOfShade().contrast}">

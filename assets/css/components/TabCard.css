@@ -1,6 +1,8 @@
 .TabCard {
     display: flex;
     flex-direction: column;
+    border-radius: 5px;
+    overflow: hidden;
 
     & header {
         display: flex;
@@ -34,7 +36,7 @@
     & .options {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: 1rem;
         background: var(--color-white-pure);
         padding: 1rem 1.5rem;
         font-size: 1rem;

@@ -32,6 +32,9 @@ const getIcon = async () => {
     case 'grid': return base.ViewGrid
     case 'picker': return base.ColorPicker
     case 'check': return base.CheckCircle
+    case 'pass': return base.Emoji
+    case 'fail': return base.EmojiSad
+    case 'external': return base.ArrowUpRightSquare
     default: return base.QuestionMark
   }
 }
