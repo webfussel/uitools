@@ -1,7 +1,10 @@
 <template>
-  <section class="Toolbar z-2" :class="[spread ? 'spread' : '']">
-    <strong>{{headline}}</strong>
-    <slot />
+  <section class="Toolbar z-2">
+    <div :class="[spread ? 'spread' : '']">
+      <strong>{{headline}}</strong>
+      <slot name="top" />
+    </div>
+    <slot name="bottom" />
   </section>
 </template>
 

@@ -2,11 +2,16 @@
     background: var(--color-white-pure);
     padding: 1em 1.5em;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 2rem;
 
-    &.spread {
-        justify-content: space-between;
+    & > div {
+        display: flex;
+        align-items: center;
+
+        &.spread {
+            justify-content: space-between;
+        }
     }
 
     & strong {

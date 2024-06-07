@@ -37,7 +37,7 @@ const getIcon = async () => {
   }
 }
 
-const icon = ref(await getIcon())
+const icon = shallowRef(await getIcon())
 
 watch(() => props.name, async () => {
   icon.value = await getIcon()

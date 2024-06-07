@@ -1,22 +1,28 @@
 <template>
   <section clasS="Colors content content-paddings full">
     <Toolbar headline="Palette View" :spread="true">
-      <div class="palette-actions">
-        <IconButton
-            v-for="(icon, index) in paletteActions"
-            v-bind="icon"
-            @click="paletteActions[index].action()"
-            :key="`Palette-${icon.name}`"
-        />
-      </div>
+      <template #top>
+        <div class="palette-actions">
+          <IconButton
+              v-for="(icon, index) in paletteActions"
+              v-bind="icon"
+              @click="paletteActions[index].action()"
+              :key="`Palette-${icon.name}`"
+          />
+        </div>
+      </template>
     </Toolbar>
-    <Toolbar headline="Shades">
-      <InputTextField label="Add Shade" @enterAction="shadeButtonAction.execute()" v-model="shadesField" :action="shadeButtonAction" placeholder="-100 >=< 100">
-        <span class="error">{{error}}</span>
-      </InputTextField>
-      <div class="palette-shades">
-        <Chip v-for="(shade, index) in shades" :key="`Shade-${shade}`" :value="shade" @close="removeChip(index)" />
-      </div>
+    <Toolbar headline="Shades" :spread="true">
+      <template #top>
+        <InputTextField label="Add Shade" @enterAction="shadeButtonAction.execute()" v-model="shadesField" :action="shadeButtonAction" placeholder="-100 >=< 100">
+          <span class="error">{{error}}</span>
+        </InputTextField>
+      </template>
+      <template #bottom>
+        <div class="palette-shades">
+          <Chip v-for="(shade, index) in shades" :key="`Shade-${shade}`" :value="shade" @close="removeChip(index)" />
+        </div>
+      </template>
     </Toolbar>
 
     <div class="grid">

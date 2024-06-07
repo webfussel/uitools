@@ -36,11 +36,7 @@ const scrollContainer = ref<HTMLElement | null>()
 const scrollCard = (section: number): void => {
   currentScrollable.value = section
   const container = scrollContainer.value!
-  const parent = container.parentElement!
-
-  const width = parent.getBoundingClientRect().width
-
-  container.style.left = `-${width * section}px`
+  container.style.left = `-${100 * section}%`
 }
 
 const tabs = [
