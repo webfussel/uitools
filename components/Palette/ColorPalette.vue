@@ -1,11 +1,5 @@
 <template>
   <section class="ColorPalette">
-    <section class="options">
-      <div class="top">
-        <div />
-        <IconButton :name="grid ? 'stripes' : 'grid'" tip="Change View" height="2em" @click="changeView" />
-      </div>
-    </section>
     <div class="colors" :class="{ rows: !grid }">
       <PaletteColorStrip
           v-for="(color, index) of generateColors(baseColorToUse, shades)"
