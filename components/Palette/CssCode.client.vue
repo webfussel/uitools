@@ -3,9 +3,9 @@
     <section class="options">
       <div class="top">
         <div class="button-group">
-          <button @click="changeCodeStyle('hex')">hex</button>
-          <button @click="changeCodeStyle('HEX')">HEX</button>
-          <button @click="changeCodeStyle('rgb')">rgb</button>
+          <button v-for="s in codeStyles" :key="s" @click="changeCodeStyle(s)" :class="{ active: currentCodeStyle === s }">
+            {{s}}
+          </button>
         </div>
         <IconButton @click="copy" :name="copying ? 'check' : 'copy'" :tip="copying ? 'Copied!' : 'Copy Code'" size="2em" />
       </div>
@@ -21,6 +21,7 @@
 import { getShadeName } from '~/composables/color'
 
 type CodeStyle = 'hex' | 'HEX' | 'rgb'
+const codeStyles : CodeStyle[] = ['hex', 'HEX', 'rgb']
 
 type Props = {
   baseColor: string
@@ -61,9 +62,9 @@ const generateCSS = (codeStyle : CodeStyle) : string => {
 }
 
 const code = ref(generateCSS('hex'))
-const codeStyle = ref<CodeStyle>('hex')
+const currentCodeStyle = ref<CodeStyle>('hex')
 const changeCodeStyle = (style : CodeStyle) => {
-  codeStyle.value = style
+  currentCodeStyle.value = style
   regenerate()
 }
 
@@ -72,7 +73,7 @@ watch(() => props.shades, () => {
 })
 
 const regenerate = () => {
-  code.value = generateCSS(codeStyle.value)
+  code.value = generateCSS(currentCodeStyle.value)
 }
 
 const copying = ref(false)

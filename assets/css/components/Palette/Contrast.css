@@ -29,6 +29,34 @@
         }
     }
 
+    & .options .bottom {
+        justify-content: stretch;
+    }
+
+    & .color-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+
+        & button {
+            all: unset;
+            flex-basis: 75px;
+            flex-grow: 0;
+            flex-shrink: 1;
+            padding: 0.5rem;
+            cursor: pointer;
+            border: 5px solid var(--color-white-pure);
+            transition: 100ms ease-in-out;
+            text-align: center;
+
+            &.active,
+            &:hover {
+                border-color: var(--color-blue);
+            }
+        }
+    }
+
     & .compliance-components {
         display: flex;
         flex-direction: column;

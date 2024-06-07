@@ -2,12 +2,28 @@
   <section class="Contrast">
     <header class="options">
       <div class="top">
-        <select v-model="currentBg">
-          <option v-for="bg in bgs" :value="bg">{{bg.name}}</option>
-        </select>
-        <select v-model="currentShade">
-          <option v-for="shade in shades" :value="shade">{{shade}}</option>
-        </select>
+        <div class="button-group">
+          <button v-for="bg in bgs" :key="bg.name" @click="changeBg(bg)" :class="{ active: currentBg.name === bg.name }">
+            {{bg.name}}
+          </button>
+        </div>
+        <InputTextField
+          label="Custom Background (hex)"
+          v-model="customBg"
+        />
+      </div>
+      <div class="bottom">
+        <div class="color-buttons">
+          <button
+              v-for="(color, index) in generateColors(baseColor, shades)"
+              :key="index"
+              :style="{background: color.color}"
+              :class="{active: currentShade === shades[index]}"
+              @click="changeCurrentShade(shades[index])"
+          >
+            <span :style="{color: color.contrast}">{{getShadeName(shades[index])}}</span>
+          </button>
+        </div>
       </div>
     </header>
     <main>
@@ -17,7 +33,7 @@
           <span>{{comp[1] ? 'PASS' : 'FAIL'}}</span>
         </li>
       </ul>
-      <div class="compliance-components" :style="{ 'background-color': currentBg.color}">
+      <div class="compliance-components" :style="{ 'background-color': isHex(customBg) ? `#${customBg}` : currentBg.color}">
         <div>
           <button :style="{'background': getColorOfShade().color, 'color': getColorOfShade().contrast}">
             Some Button
@@ -47,7 +63,12 @@ type Props = {
 
 const props = defineProps<Props>()
 
-const bgs = [
+type Bg = {
+  name: string
+  color: string
+}
+
+const bgs : Bg[] = [
   {
     name: 'Dark',
     color: '#333'
@@ -63,8 +84,13 @@ const icons = ['load', 'share', 'eye', 'picker']
 const currentBg = ref(bgs[0])
 const currentShade = ref(0)
 
+const customBg = ref('')
+
+const changeBg = (bg: Bg) => currentBg.value = bg
+const changeCurrentShade = (shade: number) => currentShade.value = shade
+
 const getColorOfShade = () => generateColors(props.baseColor, props.shades)[props.shades.findIndex(shade => shade === currentShade.value)]
-const getCompliance = () => Object.entries(checkCompliance(getColorOfShade().color, currentBg.value.color))
+const getCompliance = () => Object.entries(checkCompliance(getColorOfShade().color, isHex(customBg.value) ? customBg.value : currentBg.value.color))
 
 const compliance = ref(getCompliance())
 
@@ -73,6 +99,10 @@ watch(currentBg, () => {
 })
 
 watch(currentShade, () => {
+  compliance.value = getCompliance()
+})
+
+watch(customBg, () => {
   compliance.value = getCompliance()
 })
 </script>

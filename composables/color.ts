@@ -111,3 +111,12 @@ export const checkCompliance = (color1: string, color2: string) : CheckComplianc
     'AAA Normal': ratio < 1 / 7,
   }
 }
+
+export const isHex = (color: string) : boolean => {
+  const noHash = color.replace('#', '');
+  if (![3, 6].includes(color.length)) {
+    return false;
+  }
+  const parsed = parseInt(noHash, 16);
+  return (parsed.toString(16) === noHash.toLowerCase());
+}

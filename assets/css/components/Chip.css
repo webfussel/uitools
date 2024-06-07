@@ -15,7 +15,7 @@
         align-items: center;
         position: absolute;
         aspect-ratio: 1/1;
-        right: 0;
+        right: .2em;
         padding: .2em;
         border-radius: 999px;
         cursor: pointer;
