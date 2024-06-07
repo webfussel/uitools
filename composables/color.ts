@@ -97,7 +97,6 @@ const calculateRatio = (color1: string, color2: string) : number => {
 type CheckComplianceReturnType = [string, boolean][]
 
 export const checkCompliance = (color1: string, color2: string) : CheckComplianceReturnType => {
-  console.log('CHECK COMPLIANCE', color1, color2)
   const ratio = calculateRatio(color1, color2)
   return [
     ['AA Normal', ratio < 1 / 4],
