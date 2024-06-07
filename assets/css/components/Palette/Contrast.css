@@ -40,19 +40,30 @@
         width: 100%;
 
         & button {
+            --contrast: #fff;
             all: unset;
+            position: relative;
             flex-basis: 75px;
-            flex-grow: 0;
+            flex-grow: 1;
             flex-shrink: 1;
             padding: 0.5rem;
             cursor: pointer;
-            border: 5px solid var(--color-white-pure);
+            border-bottom: 5px solid var(--color-white-pure);
             transition: 100ms ease-in-out;
             text-align: center;
+            color: var(--contrast);
 
-            &.active,
-            &:hover {
-                border-color: var(--color-blue);
+            & .icon {
+                position: absolute;
+                scale: 0;
+                left: .5em;
+                top: 50%;
+                translate: 0 -50%;
+                transition: 100ms ease-in-out;
+            }
+
+            &.active .icon {
+                scale: 1;
             }
         }
     }

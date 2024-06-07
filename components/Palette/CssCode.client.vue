@@ -72,6 +72,10 @@ watch(() => props.shades, () => {
   regenerate()
 })
 
+watch(() => props.baseColor, () => {
+  regenerate()
+})
+
 const regenerate = () => {
   code.value = generateCSS(currentCodeStyle.value)
 }

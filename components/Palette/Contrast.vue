@@ -17,11 +17,12 @@
           <button
               v-for="(color, index) in generateColors(baseColor, shades)"
               :key="index"
-              :style="{background: color.color}"
+              :style="{background: color.color, '--contrast': color.contrast}"
               :class="{active: currentShade === shades[index]}"
               @click="changeCurrentShade(shades[index])"
           >
-            <span :style="{color: color.contrast}">{{getShadeName(shades[index])}}</span>
+            <Icon class="icon" name="check"/>
+            <span>{{getShadeName(shades[index])}}</span>
           </button>
         </div>
       </div>

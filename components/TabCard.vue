@@ -14,12 +14,12 @@
             @change-color="changeColor"
         />
         <PaletteCssCode
+            :base-color="baseColorToUse"
             :shades="shades"
-            :base-color="baseColor"
         />
         <Contrast
+            :base-color="baseColorToUse"
             :shades="shades"
-            :base-color="baseColor"
         />
       </div>
     </div>
@@ -34,8 +34,10 @@ type Props = {
   shades: number[]
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 const emit = defineEmits(['changeColor'])
+
+const baseColorToUse = ref(props.baseColor)
 
 const currentScrollable = ref(0)
 const scrollContainer = ref<HTMLElement | null>()
@@ -60,5 +62,8 @@ const tabs = [
   }
 ]
 
-const changeColor = (color : string) => emit('changeColor', color)
+const changeColor = (color : string) => {
+  baseColorToUse.value = color
+  emit('changeColor', color)
+}
 </script>
