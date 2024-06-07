@@ -96,8 +96,12 @@ const customBg = ref('')
 const changeBg = (bg: Bg) => currentBg.value = bg
 const changeCurrentShade = (shade: number) => currentShade.value = shade
 
-const getColorOfShade = () => generateColors(props.baseColor, props.shades)[props.shades.findIndex(shade => shade === currentShade.value)]
-const getCompliance = () => Object.entries(checkCompliance(getColorOfShade().color, isHex(customBg.value) ? customBg.value : currentBg.value.color))
+const getColorOfShade = () => {
+  const index = props.shades.findIndex(shade => shade === currentShade.value)
+  if (index === -1) { currentShade.value = 0 }
+  return generateColors(props.baseColor, props.shades)[index > -1 ? index : 0]
+}
+const getCompliance = () => checkCompliance(getColorOfShade().color, isHex(customBg.value) ? customBg.value : currentBg.value.color)
 
 const compliance = ref(getCompliance())
 

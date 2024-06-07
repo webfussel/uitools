@@ -38,6 +38,10 @@
 </template>
 
 <script setup lang="ts">
+useHead({
+  titleTemplate: (title ?: string) => `${title ? `${title} - ` : ''}Colors`
+})
+
 type Palette = {
   name: string
   baseColor: string

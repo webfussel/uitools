@@ -94,22 +94,17 @@ const calculateRatio = (color1: string, color2: string) : number => {
     : ((color1luminance + 0.05) / (color2luminance + 0.05))
 }
 
-type CheckComplianceReturnType = {
-  'AA Large': boolean
-  'AA Normal': boolean
-  'AAA Large': boolean
-  'AAA Normal': boolean
-}
+type CheckComplianceReturnType = [string, boolean][]
 
 export const checkCompliance = (color1: string, color2: string) : CheckComplianceReturnType => {
   console.log('CHECK COMPLIANCE', color1, color2)
   const ratio = calculateRatio(color1, color2)
-  return {
-    'AA Large': ratio < 1 / 3,
-    'AA Normal': ratio < 1 / 4,
-    'AAA Large': ratio < 1 / 4.5,
-    'AAA Normal': ratio < 1 / 7,
-  }
+  return [
+    ['AA Normal', ratio < 1 / 4],
+    ['AAA Normal', ratio < 1 / 7],
+    ['AA Large', ratio < 1 / 3],
+    ['AAA Large', ratio < 1 / 4.5],
+  ]
 }
 
 export const isHex = (color: string) : boolean => {
