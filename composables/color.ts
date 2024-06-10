@@ -1,8 +1,10 @@
 export const generateContrast = (color : string) => {
   const [r, g, b] = color.match(/.{2}/g) || ['0', '0', '0']
-  const brightness = Math.round((parseInt(parseInt(r, 16).toString(10), 10) * 299
+  const brightness = Math.round((
+      parseInt(parseInt(r, 16).toString(10), 10) * 299
     + parseInt(parseInt(g, 16).toString(10), 10) * 587
-    + parseInt(parseInt(b, 16).toString(10), 10) * 114) / 1000)
+    + parseInt(parseInt(b, 16).toString(10), 10) * 114
+  ) / 1000)
 
   const lightColor = Math.round((255 * 299 + 255 * 587 + 255 * 114) / 1000)
 
