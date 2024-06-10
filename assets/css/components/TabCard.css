@@ -19,8 +19,11 @@
             align-items: center;
             background: var(--color-white-pure);
             padding: .5rem 1.5rem;
-            font-weight: bold;
             font-size: 1.5rem;
+
+            & .name span {
+                font-weight: bold;
+            }
 
             & .IconButton {
                 top: 3px;

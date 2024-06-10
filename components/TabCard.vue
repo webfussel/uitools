@@ -2,9 +2,16 @@
   <div class="TabCard z-2">
     <header>
       <div class="top-bar">
-        <div class="name">
+        <div class="name" v-if="!renaming">
           <span>{{name}}</span>
-          <IconButton :icon="{ base: 'edit', clicked: 'check' }" :tip="{ base: 'Rename Palette', clicked: 'Renaming...', position: 'right' }" />
+          <IconButton
+              :icon="{ base: 'edit', clicked: 'check' }"
+              :tip="{ base: 'Rename Palette', clicked: 'Renaming...', position: 'right' }"
+              @click="startRenaming"
+          />
+        </div>
+        <div class="name" v-else>
+          <InputTextField label="New name" v-model="newName" @enterAction="rename" :action="{ show: true, icon: 'check', execute: rename }" />
         </div>
         <IconButton :icon="{ base : 'close', clicked: 'check' }" :tip="{ base: 'Delete Palette', clicked: 'Deleted!', position: 'left' }" @click="deleteCard" />
       </div>
@@ -45,7 +52,7 @@ type Props = {
 }
 
 const props = defineProps<Props>()
-const emit = defineEmits(['changeColor', 'delete'])
+const emit = defineEmits(['changeColor', 'delete', 'rename'])
 
 const baseColorToUse = ref(props.baseColor)
 
@@ -79,5 +86,14 @@ const changeColor = (color : string) => {
 
 const deleteCard = () => {
   emit('delete')
+}
+
+const renaming = ref(false)
+const startRenaming = () => renaming.value = true
+
+const newName = ref(props.name)
+const rename = () => {
+  emit('rename', newName.value)
+  renaming.value = false
 }
 </script>
