@@ -74,7 +74,7 @@ const luminance = (r: number, g: number, b: number): number => {
     v /= 255
     return v <= 0.03928
       ? v / 12.92
-      : Math.pow((v + 0.055) / 1.055, 2.4)
+      : ((v + 0.055) / 1.055) ** 2.4
   })
   return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722
 }
@@ -105,6 +105,5 @@ export const isHex = (color: string) : boolean => {
   if (![3, 6].includes(color.length)) {
     return false
   }
-  const parsed = parseInt(noHash, 16)
-  return (parsed.toString(16) === noHash.toLowerCase())
+  return (parseInt(noHash, 16).toString(16) === noHash.toLowerCase())
 }
