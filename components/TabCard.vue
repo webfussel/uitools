@@ -1,10 +1,19 @@
 <template>
   <div class="TabCard z-2">
     <header>
-      <button v-for="(tab, index) in tabs" @click="scrollCard(index)" :class="{active : currentScrollable === index}">
-        <Icon :name="tab.icon" />
-        <span>{{tab.name}}</span>
-      </button>
+      <div class="top-bar">
+        <div class="name">
+          <span>{{name}}</span>
+          <IconButton :icon="{ base: 'edit', clicked: 'check' }" :tip="{ base: 'Rename Palette', clicked: 'Renaming...', position: 'right' }" />
+        </div>
+        <IconButton :icon="{ base : 'close', clicked: 'check' }" :tip="{ base: 'Delete Palette', clicked: 'Deleted!', position: 'left' }" @click="deleteCard" />
+      </div>
+      <div class="tab-container">
+        <button v-for="(tab, index) in tabs" @click="scrollCard(index)" :class="{active : currentScrollable === index}">
+          <Icon :name="tab.icon" />
+          <span>{{tab.name}}</span>
+        </button>
+      </div>
     </header>
     <div class="scrollable">
       <div class="scroll-container" ref="scrollContainer">
@@ -30,12 +39,13 @@
 import Contrast from '~/components/Palette/Contrast.vue'
 
 type Props = {
+  name: string
   baseColor: string
   shades: number[]
 }
 
 const props = defineProps<Props>()
-const emit = defineEmits(['changeColor'])
+const emit = defineEmits(['changeColor', 'delete'])
 
 const baseColorToUse = ref(props.baseColor)
 
@@ -65,5 +75,9 @@ const tabs = [
 const changeColor = (color : string) => {
   baseColorToUse.value = color
   emit('changeColor', color)
+}
+
+const deleteCard = () => {
+  emit('delete')
 }
 </script>

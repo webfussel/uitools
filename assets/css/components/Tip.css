@@ -4,9 +4,30 @@
     padding: .2em 1em;
     border-radius: 0.2em;
     position: absolute;
-    bottom: 2rem;
     transition: 150ms;
     white-space: nowrap;
     background: var(--color-black-transparent);
     color: var(--color-white);
+
+    &.top {
+        bottom: 2rem;
+    }
+
+    &.bottom {
+        top: 2rem;
+    }
+
+    &.left {
+        top: 0;
+        translate: 0 20%;
+        right: 2rem;
+        height: max-content;
+    }
+
+    &.right {
+        top: 0;
+        translate: 0 20%;
+        left: 2rem;
+        height: max-content;
+    }
 }

@@ -24,6 +24,7 @@ const getIcon = async () => {
     case 'share': return base.ShareAndroid
     case 'close': return base.Xmark
     case 'add': return base.PlusCircle
+    case 'edit': return base.Edit
     case 'copy': return base.Copy
     case 'palette': return base.Palette
     case 'code': return base.Code

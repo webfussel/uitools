@@ -7,7 +7,7 @@
             {{s}}
           </button>
         </div>
-        <IconButton @click="copy" :name="copying ? 'check' : 'copy'" :tip="copying ? 'Copied!' : 'Copy Code'" size="2em" />
+        <IconButton @click="copy" :icon="{clicked: 'check', base: 'copy'}" :tip="{clicked: 'Copied!', base: 'Copy Code', position: 'left'}" size="2em" />
       </div>
       <InputTextField label="Prefix" v-model="prefix" @change="regenerate" />
     </section>
@@ -80,14 +80,8 @@ const regenerate = () => {
   code.value = generateCSS(currentCodeStyle.value)
 }
 
-const copying = ref(false)
 const copy = () => {
-  copying.value = true
-  useClipbord().copy(code.value, () => {
-    setTimeout(() => {
-      copying.value = false
-    }, 1000)
-  })
+  useClipbord().copy(code.value)
 }
 
 </script>

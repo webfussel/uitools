@@ -7,7 +7,7 @@
               v-for="(icon, index) in paletteActions"
               v-bind="icon"
               @click="paletteActions[index].action()"
-              :key="`Palette-${icon.name}`"
+              :key="`Palette-${icon.tip.base}`"
           />
         </div>
       </template>
@@ -31,7 +31,10 @@
           :key="palette.baseColor"
           :base-color="palette.baseColor"
           :shades="getShadesWithZero(shades)"
-          @change-color="color => changeColor(color, index)"
+          :name="palette.name"
+          @delete="deleteCard(index)"
+          @rename="(name : string) => renameCard(name, index)"
+          @change-color="(color : string) => changeColor(color, index)"
       />
     </div>
   </section>
@@ -122,23 +125,47 @@ const generateUrl = () => {
 
 const paletteActions = [
   {
-    name: 'refresh',
-    tip: 'Reset Palette',
+    icon: {
+      base: 'refresh',
+      clicked: 'check',
+    },
+    tip: {
+      base: 'Reset Palette',
+      clicked: 'Reset done!'
+    },
     action: generateRandom,
   },
   {
-    name: 'load',
-    tip: 'Load palette from storage',
+    icon: {
+      base: 'load',
+      clicked: 'check',
+    },
+    tip: {
+      base: 'Load palette from storage',
+      clicked: 'Loaded!'
+    },
     action: loadFromStorage,
   },
   {
-    name: 'save',
-    tip: 'Save palette to storage',
+    icon: {
+      base: 'save',
+      clicked: 'check',
+    },
+    tip: {
+      base: 'Save palette to storage',
+      clicked: 'Saved!'
+    },
     action: saveToStorage,
   },
   {
-    name: 'share',
-    tip: 'Share palette',
+    icon: {
+      base: 'share',
+      clicked: 'check',
+    },
+    tip: {
+      base: 'Copy share link',
+      clicked: 'Copied link!'
+    },
     action: generateUrl,
   },
 ]
@@ -174,6 +201,16 @@ const removeChip = (index : number) => shades.value.splice(index, 1)
 const shadeButtonAction = {
   show: true,
   icon: 'add',
-  execute: () => addChip()
+  execute: addChip
+}
+
+const deleteCard = (index : number) => {
+  // palettesToSave.splice(index, 1)
+  palettes.value.splice(index, 1)
+}
+
+const renameCard = (name : string, index : number) => {
+  palettes.value[index].name = name
+  palettesToSave[index].name = name
 }
 </script>

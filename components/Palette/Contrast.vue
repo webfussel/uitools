@@ -29,7 +29,7 @@
     </header>
     <main>
       <header>
-        <span>Contrast based on <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html">WCAG<Icon name="external"/></a></span>
+        <span>Contrast based on <a target="_blank" href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html">WCAG<Icon name="external"/></a></span>
         <ul class="compliance">
           <li class="compliance-level" v-for="comp in compliance" :class="{pass: comp[1]}">
             <span>{{comp[0]}}:</span>
