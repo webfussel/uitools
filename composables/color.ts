@@ -10,17 +10,17 @@ export const generateContrast = (color : string) => {
 }
 
 export const hexToRgb = (hex : string) => {
-  const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+  const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i
   hex = hex.replace(shorthandRegex, (m, r, g, b) => {
-    return r + r + g + g + b + b;
-  });
+    return r + r + g + g + b + b
+  })
 
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
   return result ? [
     parseInt(result[1], 16),
     parseInt(result[2], 16),
     parseInt(result[3], 16),
-  ] : [];
+  ] : []
 }
 
 export const generateColors = (color: string, shades: number[]) => {
@@ -30,22 +30,22 @@ export const generateColors = (color: string, shades: number[]) => {
       color: `#${useColor}`, contrast: generateContrast(useColor),
     }
 
-    let additionalColor = 0xff;
-    let calc = 1 / 100 * shade;
+    let additionalColor = 0xff
+    let calc = 1 / 100 * shade
 
     if (shade < 0) {
       additionalColor = 0x00
-      calc = -calc;
+      calc = -calc
     }
 
     useColor = useColor.trim().replace('#', '')
     useColor = useColor.length === 6 ? useColor : [...useColor].reduce((all, current) => all + current + current, '')
 
-    const regex = new RegExp(`.{${useColor.length / 3}}`, 'g');
-    const rgb = useColor.match(regex) || [];
+    const regex = new RegExp(`.{${useColor.length / 3}}`, 'g')
+    const rgb = useColor.match(regex) || []
     const rgbCalc = rgb.map(rgbColor => {
       const calculated = Math.round(additionalColor * calc + parseInt(rgbColor, 16) * (1 - calc)).toString(16)
-      return calculated.padStart(2, '0');
+      return calculated.padStart(2, '0')
     })
 
     const fullColor = rgbCalc.join('')
@@ -60,7 +60,7 @@ export const getShadesWithZero = (shades : number[]) => {
   return sortShades(newShades)
 }
 
-export const sortShades = (shades: number[]) => shades.toSorted((a, b) => a - b);
+export const sortShades = (shades: number[]) => shades.toSorted((a, b) => a - b)
 
 export const getShadeName = (shade : number) => {
   if (shade === 0) {
@@ -71,11 +71,11 @@ export const getShadeName = (shade : number) => {
 
 const luminance = (r: number, g: number, b: number): number => {
   const a = [r, g, b].map(v => {
-    v /= 255;
+    v /= 255
     return v <= 0.03928
       ? v / 12.92
       : Math.pow((v + 0.055) / 1.055, 2.4)
-  });
+  })
   return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722
 }
 
@@ -85,13 +85,11 @@ const calculateRatio = (color1: string, color2: string) : number => {
   const [r2, g2, b2] = hexToRgb(color2)
 
   // calculate the relative luminance
-  const color1luminance = luminance(r1, g1, b1)
-  const color2luminance = luminance(r2, g2, b2)
+  const [luminance1, luminance2] = [luminance(r1, g1, b1), luminance(r2, g2, b2)]
 
   // calculate the color contrast ratio
-  return color1luminance > color2luminance
-    ? ((color2luminance + 0.05) / (color1luminance + 0.05))
-    : ((color1luminance + 0.05) / (color2luminance + 0.05))
+  const [bigger, smaller] = luminance1 > luminance2 ? [luminance1, luminance2] : [luminance2, luminance2]
+  return (smaller + 0.05) / (bigger + 0.05)
 }
 
 type CheckComplianceReturnType = [string, boolean][]
@@ -107,10 +105,10 @@ export const checkCompliance = (color1: string, color2: string) : CheckComplianc
 }
 
 export const isHex = (color: string) : boolean => {
-  const noHash = color.replace('#', '');
+  const noHash = color.replace('#', '')
   if (![3, 6].includes(color.length)) {
-    return false;
+    return false
   }
-  const parsed = parseInt(noHash, 16);
-  return (parsed.toString(16) === noHash.toLowerCase());
+  const parsed = parseInt(noHash, 16)
+  return (parsed.toString(16) === noHash.toLowerCase())
 }
