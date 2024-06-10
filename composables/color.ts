@@ -9,7 +9,7 @@ export const generateContrast = (color : string) => {
   return Math.abs(brightness) < (lightColor / 2) ? '#ffffff' : '#000000'
 }
 
-export const hexToRgb = (hex : string) => {
+export const hexToRgb = (hex : string) : [r : number, g : number, b : number] => {
   const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i
   hex = hex.replace(shorthandRegex, (m, r, g, b) => {
     return r + r + g + g + b + b
@@ -20,7 +20,7 @@ export const hexToRgb = (hex : string) => {
     parseInt(result[1], 16),
     parseInt(result[2], 16),
     parseInt(result[3], 16),
-  ] : []
+  ] : [0, 0, 0]
 }
 
 export const generateColors = (color: string, shades: number[]) => {
@@ -80,12 +80,8 @@ const luminance = (r: number, g: number, b: number): number => {
 }
 
 const calculateRatio = (color1: string, color2: string) : number => {
-  // read the colors and transform them into rgb format
-  const [r1, g1, b1] = hexToRgb(color1)
-  const [r2, g2, b2] = hexToRgb(color2)
-
   // calculate the relative luminance
-  const [luminance1, luminance2] = [luminance(r1, g1, b1), luminance(r2, g2, b2)]
+  const [luminance1, luminance2] = [luminance(...hexToRgb(color1)), luminance(...hexToRgb(color2))]
 
   // calculate the color contrast ratio
   const [bigger, smaller] = luminance1 > luminance2 ? [luminance1, luminance2] : [luminance2, luminance1]
