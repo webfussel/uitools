@@ -122,10 +122,10 @@ span.highlight {
 
 .card {
     padding: 2rem;
-    background: var(--color-white-transparent);
+    background: var(--color-white-pure);
     border-radius: 20px;
     min-width: 300px;
-    flex: 1;
+    text-align: center;
 }
 
 .content {
@@ -188,6 +188,17 @@ span.highlight {
 
 .z-5 {
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+.badge {
+    position: absolute;
+    right: -1rem;
+    top: .5rem;
+    padding: .2em 1em;
+    background: var(--color-blue);
+    color: var(--color-white);
+    border-radius: 999px;
+    font-size: .6rem;
 }
 
 @media (width <= 450px) {

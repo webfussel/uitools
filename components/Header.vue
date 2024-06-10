@@ -7,6 +7,7 @@
       <nav>
         <ul>
           <li v-for="element in navElements" :key="element.name">
+            <span v-if="element.wip" class="badge">WIP</span>
             <NuxtLink :to="element.link" active-class="active">
               <Icon :name="element.icon"/>
               <span>{{ element.name }}</span>
@@ -23,6 +24,7 @@ interface NavElement {
   name: string
   link: string
   icon: string
+  wip: boolean
 }
 
 const navElements: NavElement[] = [
@@ -30,16 +32,19 @@ const navElements: NavElement[] = [
     name: 'Colors',
     link: '/colors',
     icon: 'colors',
+    wip: false,
   },
   {
     name: 'Fonts',
     link: '/fonts',
     icon: 'fonts',
+    wip: true,
   },
   {
     name: 'Spacing',
     link: '/spacing',
     icon: 'spacing',
+    wip: true,
   },
 ]
 </script>

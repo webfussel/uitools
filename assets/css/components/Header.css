@@ -43,6 +43,7 @@
             height: 100%;
 
             & li {
+                position: relative;
                 display: flex;
 
                 & a {

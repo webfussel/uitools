@@ -1,5 +1,5 @@
 <template>
-  <section clasS="Colors content content-paddings full">
+  <section class="Colors content content-paddings full">
     <Toolbar headline="Palette View" :spread="true">
       <template #top>
         <div class="palette-actions">
