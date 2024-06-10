@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "uitools",
+    "public": ".output/public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

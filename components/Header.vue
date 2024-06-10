@@ -36,7 +36,7 @@ const navElements: NavElement[] = [
   },
   {
     name: 'Fonts',
-    link: '/fonts',
+    link: '/sizing',
     icon: 'fonts',
     wip: true,
   },
