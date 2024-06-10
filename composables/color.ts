@@ -88,7 +88,7 @@ const calculateRatio = (color1: string, color2: string) : number => {
   const [luminance1, luminance2] = [luminance(r1, g1, b1), luminance(r2, g2, b2)]
 
   // calculate the color contrast ratio
-  const [bigger, smaller] = luminance1 > luminance2 ? [luminance1, luminance2] : [luminance2, luminance2]
+  const [bigger, smaller] = luminance1 > luminance2 ? [luminance1, luminance2] : [luminance2, luminance1]
   return (smaller + 0.05) / (bigger + 0.05)
 }
 
