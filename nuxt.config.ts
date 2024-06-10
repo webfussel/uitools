@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     '~/assets/css/fonts.css',
     '~/assets/css/general.css',
     '~/assets/css/components/Header.css',
+    '~/assets/css/components/Button.css',
     '~/assets/css/components/Chip.css',
     '~/assets/css/components/Input/InputBase.css',
     '~/assets/css/components/Input/TextField.css',

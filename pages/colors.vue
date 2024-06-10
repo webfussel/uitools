@@ -36,6 +36,20 @@
           @rename="(name : string) => renameCard(name, index)"
           @change-color="(color : string) => changeColor(color, index)"
       />
+      <div class="new-card z-1">
+        <header>
+          <span>Add new color</span>
+        </header>
+        <main>
+          <InputTextField
+              label="Color name"
+              v-model="newColorName"
+              @enterAction="addNewColor"
+          />
+          <input type="color" v-model="newColorValue" />
+        </main>
+        <button class="Button primary z-2" @click="addNewColor">Add Color</button>
+      </div>
     </div>
   </section>
 </template>
@@ -212,5 +226,19 @@ const deleteCard = (index : number) => {
 const renameCard = (name : string, index : number) => {
   palettes.value[index].name = name
   palettesToSave[index].name = name
+}
+
+const newColorName = ref('')
+const newColorValue = ref('')
+
+const addNewColor = () => {
+  const addNew = {
+    name: newColorName.value,
+    baseColor: newColorValue.value,
+  }
+  palettes.value.push(addNew)
+
+  newColorName.value = ''
+  newColorValue.value = ''
 }
 </script>
