@@ -1,9 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: false,
-  sourcemap: {
-    server: true,
-    client: true,
+  ssr: true,
+  nitro: {
+    prerender: {
+      routes: [
+        '/',
+        '/colors',
+        '/sizing',
+        '/spacing',
+      ]
+    }
   },
   css: [
     '~/assets/css/fonts.css',
@@ -23,6 +29,12 @@ export default defineNuxtConfig({
     '~/assets/css/components/Palette/Contrast.css',
     '~/assets/css/pages/colors.css',
   ],
+  routeRules: {
+    '/': { prerender: true },
+    '/colors': { prerender: true },
+    '/sizing': { prerender: true },
+    '/spacing': { prerender: true },
+  },
   app: {
     head: {
       htmlAttrs: { lang: 'de' },
