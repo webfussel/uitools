@@ -12,7 +12,9 @@
       <InputTextField label="Prefix" v-model="prefix" @change="() => { regenerate(); changePrefix() }" />
     </section>
     <div class="code-wrapper">
-      <highlightjs class="width" autodetect :code="code" />
+      <ClientOnly>
+        <highlightjs class="width" autodetect :code="code" />
+      </ClientOnly>
     </div>
   </section>
 </template>

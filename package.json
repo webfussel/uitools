@@ -9,6 +9,8 @@
     "preview": "nuxt preview",
     "prepare": "nuxt prepare",
     "postinstall": "nuxt prepare",
+    "generate:preview": "nuxt generate && nuxt preview",
+    "build:preview": "nuxt build && nuxt preview",
     "build:deploy": "nuxt build && firebase deploy --only hosting"
   },
   "devDependencies": {

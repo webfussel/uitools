@@ -68,7 +68,6 @@ type Palette = {
 }
 
 const storageKey = 'uitools_palette'
-
 const shadesField = ref(0)
 const shades = ref([-60, -45, -30, -15, 15, 30, 45, 60])
 
@@ -76,20 +75,20 @@ let palettesToSave : Palette[] = []
 const palettes = ref<Palette[]>([])
 
 onMounted(() => {
-  const url = new URL(location.href)
-  const data = url.searchParams.get('data')
-  if (!!data) {
-    try {
+  try {
+    const url = new URL(location.href)
+    const data = url.searchParams.get('data')
+    if (!!data) {
       const decoded = atob(data)
       const loaded = JSON.parse(decoded)
       shades.value = loaded.shades
       palettes.value = loaded.palettes as Palette[]
       palettesToSave = loaded.palettes as Palette[]
-    } catch (e) {
-      generateRandom()
+    } else {
+      useStorage().get(storageKey).shades ? loadFromStorage() : generateRandom()
     }
-  } else {
-    useStorage().get(storageKey).shades ? loadFromStorage() : generateRandom()
+  } catch (e) {
+    generateRandom()
   }
 })
 
