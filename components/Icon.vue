@@ -36,6 +36,7 @@ const getIcon = async () => {
     case 'pass': return base.Emoji
     case 'fail': return base.EmojiSad
     case 'external': return base.ArrowUpRightSquare
+    case 'hashtag': return base.Hashtag
     default: return base.QuestionMark
   }
 }

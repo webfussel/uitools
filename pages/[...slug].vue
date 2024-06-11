@@ -2,6 +2,6 @@
 const route = useRoute()
 
 if (route.fullPath === '/' || route.fullPath === '') {
-  navigateTo('/colors/')
+  navigateTo('/colors')
 }
 </script>

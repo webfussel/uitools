@@ -8,6 +8,7 @@
           </button>
         </div>
         <InputTextField
+          icon="hashtag"
           label="Custom Background (hex)"
           v-model="customBg"
         />

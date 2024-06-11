@@ -32,6 +32,8 @@
         <PaletteCssCode
             :base-color="baseColorToUse"
             :shades="shades"
+            :prefix="prefix"
+            @change-prefix="changePrefix"
         />
         <Contrast
             :base-color="baseColorToUse"
@@ -48,11 +50,12 @@ import Contrast from '~/components/Palette/Contrast.vue'
 type Props = {
   name: string
   baseColor: string
+  prefix: string
   shades: number[]
 }
 
 const props = defineProps<Props>()
-const emit = defineEmits(['changeColor', 'delete', 'rename'])
+const emit = defineEmits(['changeColor', 'changePrefix', 'delete', 'rename'])
 
 const baseColorToUse = ref(props.baseColor)
 
@@ -95,5 +98,9 @@ const newName = ref(props.name)
 const rename = () => {
   emit('rename', newName.value)
   renaming.value = false
+}
+
+const changePrefix = (prefix : string) => {
+  emit('changePrefix', prefix)
 }
 </script>

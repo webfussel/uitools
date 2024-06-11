@@ -32,9 +32,11 @@
           :base-color="palette.baseColor"
           :shades="getShadesWithZero(shades)"
           :name="palette.name"
+          :prefix="palette.prefix"
           @delete="deleteCard(index)"
           @rename="(name : string) => renameCard(name, index)"
           @change-color="(color : string) => changeColor(color, index)"
+          @change-prefix="(prefix : string) => changePrefix(prefix, index)"
       />
       <div class="new-card z-1">
         <header>
@@ -62,11 +64,10 @@ useHead({
 type Palette = {
   name: string
   baseColor: string
+  prefix: string
 }
 
 const storageKey = 'uitools_palette'
-const newPaletteName = ref('')
-const newPaletteColor = ref('')
 
 const shadesField = ref(0)
 const shades = ref([-60, -45, -30, -15, 15, 30, 45, 60])
@@ -96,11 +97,16 @@ const changeColor = (color : string, paletteIndex : number) => {
   palettesToSave[paletteIndex].baseColor = color
 }
 
+const changePrefix = (prefix : string, paletteIndex : number) => {
+  palettesToSave[paletteIndex].prefix = prefix
+}
+
 const generateRandom = () => {
   shades.value = [-60, -45, -30, -15, 15, 30, 45, 60]
   const pals = [{
     name: 'Some Fancy Color',
-    baseColor: generateRandomColor()
+    baseColor: generateRandomColor(),
+    prefix: '',
   }]
   palettes.value = pals
   palettesToSave = pals
@@ -127,7 +133,7 @@ const saveToStorage = () => {
 
 const generateDataString = () => JSON.stringify({
   shades: shades.value,
-  palettes: palettesToSave
+  palettes: palettesToSave,
 })
 
 const generateUrl = () => {
@@ -229,12 +235,13 @@ const renameCard = (name : string, index : number) => {
 }
 
 const newColorName = ref('')
-const newColorValue = ref('')
+const newColorValue = ref(generateRandomColor())
 
 const addNewColor = () => {
   const addNew = {
     name: newColorName.value,
     baseColor: newColorValue.value,
+    prefix: '',
   }
   palettes.value.push(addNew)
 

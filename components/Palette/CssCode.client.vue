@@ -9,7 +9,7 @@
         </div>
         <IconButton @click="copy" :icon="{clicked: 'check', base: 'copy'}" :tip="{clicked: 'Copied!', base: 'Copy Code', position: 'left'}" size="2em" />
       </div>
-      <InputTextField label="Prefix" v-model="prefix" @change="regenerate" />
+      <InputTextField label="Prefix" v-model="prefix" @change="() => { regenerate(); changePrefix() }" />
     </section>
     <div class="code-wrapper">
       <highlightjs class="width" autodetect :code="code" />
@@ -26,13 +26,15 @@ const codeStyles : CodeStyle[] = ['hex', 'HEX', 'rgb']
 type Props = {
   baseColor: string
   shades: number[]
+  prefix: string
 }
 
-const prefix = ref('primary')
 const props = withDefaults(defineProps<Props>(), {
   shades: () => [],
 })
-const emit = defineEmits(['codeChange'])
+const emit = defineEmits(['codeChange', 'changePrefix'])
+
+const prefix = ref(props.prefix)
 
 const getCodeStyle = (color : string, style : CodeStyle) => {
   switch (style) {
@@ -82,6 +84,10 @@ const regenerate = () => {
 
 const copy = () => {
   useClipbord().copy(code.value)
+}
+
+const changePrefix = () => {
+  emit('changePrefix', prefix.value)
 }
 
 </script>
