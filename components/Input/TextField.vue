@@ -4,9 +4,9 @@
       <span v-if="icon" class="prefix">
         <Icon :name="icon"/>
       </span>
-      <input @keyup.enter="$emit('enterAction')" :min="min" :maxlength="maxLength" :type="type" :placeholder="placeholder || ' '" v-model="value" @input="$emit('change')" :disabled="disabled"/>
-      <label :class="{'move-left': !!icon}">{{ label }} <span class="req" v-if="required">*</span></label>
-      <button v-if="action && action.show" class="suffix" @click="action.execute()">
+      <input :id="id" @keyup.enter="$emit('enterAction')" :min="min" :maxlength="maxLength" :type="type" :placeholder="placeholder || ' '" v-model="value" @input="$emit('change')" :disabled="disabled"/>
+      <label :for="id" :class="{'move-left': !!icon}">{{ label }} <span class="req" v-if="required">*</span></label>
+      <button v-if="action && action.show" class="suffix" @click="action.execute()" :aria-label="action.label">
         <Icon :name="action.icon"/>
       </button>
     </div>
@@ -31,9 +31,12 @@ interface Props {
   action?: {
     show: boolean
     icon: string
+    label: string
     execute: () => void
   }
 }
+
+const id = useId()
 
 const emit = defineEmits(['update:modelValue', 'blur', 'change', 'enterAction'])
 

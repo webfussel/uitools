@@ -48,7 +48,7 @@
               v-model="newColorName"
               @enterAction="addNewColor"
           />
-          <input type="color" v-model="newColorValue" />
+          <input type="color" v-model="newColorValue" aria-label="Choose new Color" />
         </main>
         <button class="Button primary z-2" @click="addNewColor">Add Color</button>
       </div>
@@ -220,6 +220,7 @@ const removeChip = (index : number) => shades.value.splice(index, 1)
 const shadeButtonAction = {
   show: true,
   icon: 'add',
+  label: 'Add Shade',
   execute: addChip
 }
 

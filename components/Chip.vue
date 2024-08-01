@@ -1,7 +1,7 @@
 <template>
   <span class="Chip">
     <span>{{value}}</span>
-    <button @click="close()">
+    <button @click="close()" :aria-label="`Remove ${value}`">
       <Icon name="close" />
     </button>
   </span>
