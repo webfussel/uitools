@@ -11,7 +11,7 @@
           />
         </div>
         <div class="name" v-else>
-          <InputTextField label="New name" v-model="newName" @enterAction="rename" :action="{ show: true, icon: 'check', execute: rename }" />
+          <InputTextField label="New name" v-model="newName" @enterAction="rename" :action="{ label: 'Confirm new name', show: true, icon: 'check', execute: rename }" />
         </div>
         <IconButton :icon="{ base : 'close', clicked: 'check' }" :tip="{ base: 'Delete Palette', clicked: 'Deleted!', position: 'left' }" @click="deleteCard" />
       </div>

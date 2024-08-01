@@ -38,7 +38,7 @@
                 flex: 1;
                 padding: .5em 1.5em;
                 background: var(--color-blue);
-                color: var(--color-white-transparent);
+                color: var(--color-white);
                 cursor: pointer;
                 transition: 100ms ease-in-out;
                 display: flex;

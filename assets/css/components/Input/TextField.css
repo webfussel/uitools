@@ -3,6 +3,10 @@
         width: 100%;
     }
 
+    &.big {
+        font-size: 1.2em;
+    }
+
     & .field {
         &.disabled {
             cursor: not-allowed;
