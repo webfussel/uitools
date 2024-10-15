@@ -12,7 +12,7 @@
         display: flex;
         color: black;
         padding: 1em;
-        border-radius: 5px;
+        border-radius: var(--radius-standard);
         justify-content: center;
 
         & label {

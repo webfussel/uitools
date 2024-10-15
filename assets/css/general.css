@@ -19,13 +19,13 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 20px;
+    border-radius: var(--radius-standard);
     background: #b2bec3;
     transition: var(--transition-time);
 }
 
 ::-webkit-scrollbar-track {
-    border-radius: 20px;
+    border-radius: var(--radius-standard);
     background: rgba(0, 0, 0, 0.3);
 }
 
@@ -37,7 +37,8 @@
 :root {
     --spacing-standard: 3rem;
     --transition-time: 250ms;
-    --radius-standard: 4px;
+
+    --radius-standard: 10px;
 
     --color-white: #ecf0f1;
     --color-white-transparent: rgba(236, 240, 241, 0.5);
@@ -123,7 +124,7 @@ span.highlight {
 .card {
     padding: 2rem;
     background: var(--color-white-pure);
-    border-radius: 20px;
+    border-radius: var(--radius-standard);
     min-width: 300px;
     text-align: center;
 }

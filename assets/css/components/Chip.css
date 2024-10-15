@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     background: var(--color-blue);
-    border-radius: 9999px;
+    border-radius: 999px;
     color: var(--color-white);
     padding: .3em 2.5em .3em 1em;
     user-select: none;

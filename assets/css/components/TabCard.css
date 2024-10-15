@@ -1,7 +1,7 @@
 .TabCard {
     display: flex;
     flex-direction: column;
-    border-radius: 5px;
+    border-radius: var(--radius-standard);
     overflow: hidden;
 
     & header {

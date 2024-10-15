@@ -59,7 +59,7 @@
         flex-wrap: wrap;
         justify-content: center;
         width: 100%;
-        border-radius: 5px;
+        border-radius: var(--radius-standard);
         overflow: hidden;
 
         & button {
@@ -102,7 +102,7 @@
         & button {
             all: unset;
             padding: 1em 1.5em;
-            border-radius: 5px;
+        border-radius: var(--radius-standard);
             cursor: pointer;
         }
 
