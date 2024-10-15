@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: true,
+
   nitro: {
     prerender: {
       routes: [
@@ -11,6 +12,7 @@ export default defineNuxtConfig({
       ]
     }
   },
+
   css: [
     '~/assets/css/fonts.css',
     '~/assets/css/general.css',
@@ -29,12 +31,14 @@ export default defineNuxtConfig({
     '~/assets/css/components/Palette/Contrast.css',
     '~/assets/css/pages/colors.css',
   ],
+
   routeRules: {
     '/': { prerender: true },
     '/colors': { prerender: true },
     '/sizing': { prerender: true },
     '/spacing': { prerender: true },
   },
+
   app: {
     head: {
       htmlAttrs: { lang: 'de' },
@@ -44,5 +48,7 @@ export default defineNuxtConfig({
         { rel: 'preload', crossorigin: 'anonymous', as: 'font', href: '/fonts/roboto_con_reg.woff2', type: 'font/woff2' },
       ]
     }
-  }
+  },
+
+  compatibilityDate: '2024-10-15'
 })

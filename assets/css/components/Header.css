@@ -18,13 +18,13 @@
         z-index: 2;
 
         & > h1 {
-            margin: 0;
             padding-top: 1rem;
             padding-bottom: 1rem;
             cursor: default;
             user-select: none;
+            margin: 0 var(--padding) 0 0;
 
-            & > img {
+            & img {
                 height: 40px;
             }
         }

@@ -2,7 +2,9 @@
   <header class="Header">
     <div class="top z-3 content-paddings">
       <h1>
-        <span class="highlight">UI</span>Tools
+        <NuxtLink to="/">
+          <img src="/img/logo.svg" alt="UI Tools Logo" />
+        </NuxtLink>
       </h1>
       <nav>
         <ul>
