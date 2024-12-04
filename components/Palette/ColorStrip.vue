@@ -31,12 +31,8 @@ type Props = {
 }
 
 const props = defineProps<Props>()
-const emit = defineEmits(['colorChange'])
-
 const currentColor = ref(props.color)
-const changeColor = () => {
-  emit('colorChange', currentColor.value)
-}
+const baseColor = inject<Ref<string>>('baseColor')!
 
 const successMessageColor = ref(false)
 const failMessageColor = ref(false)
@@ -62,5 +58,10 @@ const copy = (event : Event, target : string) => {
       setTimeout(() => failMessageContrast.value = false, 1000)
     }
   })
+}
+
+const changeColor = (event : Event) => {
+  const element = event.target as HTMLInputElement
+  baseColor.value = element.value
 }
 </script>

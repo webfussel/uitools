@@ -24,21 +24,12 @@
     </header>
     <div class="scrollable">
       <div class="scroll-container" ref="scrollContainer">
-        <PaletteColorPalette
-            :base-color="baseColor"
-            :shades="shades"
-            @change-color="changeColor"
-        />
+        <PaletteColorPalette />
         <PaletteCssCode
-            :base-color="baseColorToUse"
-            :shades="shades"
             :prefix="prefix"
             @change-prefix="changePrefix"
         />
-        <Contrast
-            :base-color="baseColorToUse"
-            :shades="shades"
-        />
+        <Contrast />
       </div>
     </div>
   </div>
@@ -57,7 +48,14 @@ type Props = {
 const props = defineProps<Props>()
 const emit = defineEmits(['changeColor', 'changePrefix', 'delete', 'rename'])
 
-const baseColorToUse = ref(props.baseColor)
+const baseColor = ref(props.baseColor)
+provide('baseColor', baseColor)
+
+const shades = ref(props.shades)
+provide('shades', shades)
+watch(() => props.shades, () => {
+  shades.value = props.shades
+})
 
 const currentScrollable = ref(0)
 const scrollContainer = ref<HTMLElement | null>()
@@ -81,11 +79,6 @@ const tabs = [
     name: 'Contrast'
   }
 ]
-
-const changeColor = (color : string) => {
-  baseColorToUse.value = color
-  emit('changeColor', color)
-}
 
 const deleteCard = () => {
   emit('delete')

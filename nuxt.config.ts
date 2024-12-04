@@ -50,5 +50,10 @@ export default defineNuxtConfig({
     }
   },
 
-  compatibilityDate: '2024-10-15'
+  compatibilityDate: '2024-10-15',
+  modules: ['nuxt-shiki'],
+  shiki: {
+    defaultTheme: 'catppuccin-frappe',
+    bundledLangs: ['css']
+  }
 })

@@ -12,9 +12,7 @@
       <InputTextField label="Prefix" v-model="prefix" @change="() => { regenerate(); changePrefix() }" />
     </section>
     <div class="code-wrapper">
-      <ClientOnly>
-        <highlightjs class="width" autodetect :code="code" />
-      </ClientOnly>
+      <Shiki lang="css" :code="code" />
     </div>
   </section>
 </template>
@@ -26,15 +24,14 @@ type CodeStyle = 'hex' | 'HEX' | 'rgb'
 const codeStyles : CodeStyle[] = ['hex', 'HEX', 'rgb']
 
 type Props = {
-  baseColor: string
-  shades: number[]
   prefix: string
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  shades: () => [],
-})
+const props = defineProps<Props>()
 const emit = defineEmits(['codeChange', 'changePrefix'])
+
+const baseColor = inject<Ref<string>>('baseColor')!
+const shades = inject<Ref<number[]>>('shades')!
 
 const prefix = ref(props.prefix)
 
@@ -48,10 +45,10 @@ const getCodeStyle = (color : string, style : CodeStyle) => {
 }
 
 const generateCSS = (codeStyle : CodeStyle) : string => {
-  const colors = generateColors(props.baseColor, props.shades)
+  const colors = generateColors(baseColor.value, shades.value)
   let ret = ':root {\n'
   ret += colors.map((color, index) => {
-    const shadeName = getShadeName(props.shades[index]).toLowerCase()
+    const shadeName = getShadeName(shades.value[index]).toLowerCase()
 
     const col = getCodeStyle(color.color, codeStyle)
     const colContrast = getCodeStyle(color.contrast, codeStyle)
@@ -72,11 +69,11 @@ const changeCodeStyle = (style : CodeStyle) => {
   regenerate()
 }
 
-watch(() => props.shades, () => {
+watch(() => shades.value, () => {
   regenerate()
 })
 
-watch(() => props.baseColor, () => {
+watch(() => baseColor.value, () => {
   regenerate()
 })
 

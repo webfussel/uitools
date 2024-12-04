@@ -64,12 +64,8 @@
 </template>
 
 <script setup lang="ts">
-type Props = {
-  shades: number[]
-  baseColor: string
-}
-
-const props = defineProps<Props>()
+const baseColor = inject<Ref<string>>('baseColor')!
+const shades = inject<Ref<number[]>>('shades')!
 
 type Bg = {
   name: string
@@ -98,9 +94,9 @@ const changeBg = (bg: Bg) => currentBg.value = bg
 const changeCurrentShade = (shade: number) => currentShade.value = shade
 
 const getColorOfShade = () => {
-  const index = props.shades.findIndex(shade => shade === currentShade.value)
+  const index = shades.value.findIndex(shade => shade === currentShade.value)
   if (index === -1) { currentShade.value = 0 }
-  return generateColors(props.baseColor, props.shades)[index > -1 ? index : 0]
+  return generateColors(baseColor.value, shades.value)[index > -1 ? index : 0]
 }
 const getCompliance = () => checkCompliance(getColorOfShade().color, isHex(customBg.value) ? customBg.value : currentBg.value.color)
 

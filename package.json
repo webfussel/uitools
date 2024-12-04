@@ -13,11 +13,12 @@
     "build:preview": "nuxt build && nuxt preview",
     "build:deploy": "nuxt build && firebase deploy --only hosting"
   },
-  "devDependencies": { "nuxt": "^3.11.2" },
+  "devDependencies": {
+    "nuxt": "3.12.4",
+    "nuxt-shiki": "^0.3.0"
+  },
   "dependencies": {
-    "@highlightjs/vue-plugin": "^2.1.0",
     "@iconoir/vue": "^7.7.0",
-    "highlight.js": "^11.10.0",
     "iconoir": "^7.7.0",
     "vue": "^3.5.12"
   }
