@@ -1,35 +1,23 @@
 .Header {
     --padding: 2rem;
     display: flex;
-    flex-direction: column;
-    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    position: sticky;
+    top: 0;
     z-index: 20000;
-    background: var(--color-white-pure);
 
-    & .nav-icon {
-        position: relative;
-        top: -2px;
-    }
+    & h1 {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        cursor: default;
+        user-select: none;
 
-    & > .top {
-        display: flex;
-        justify-content: flex-start;
-        position: relative;
-        z-index: 2;
-
-        & > h1 {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-            cursor: default;
-            user-select: none;
-            margin: 0 var(--padding) 0 0;
-
-            & img {
-                height: 40px;
-            }
+        & img {
+            height: 40px;
         }
     }
-
 
     & nav {
         padding: 0 var(--padding);

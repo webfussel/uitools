@@ -1,5 +1,5 @@
 <template>
-  <section class="Toolbar z-2">
+  <section class="Toolbar">
     <div :class="[spread ? 'spread' : '']">
       <strong>{{headline}}</strong>
       <slot name="top" />
