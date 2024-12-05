@@ -59,6 +59,8 @@ const navElements: NavElement[] = [
   position: sticky;
   top: 0;
   z-index: 20000;
+  background: var(--color-white-transparent);
+  backdrop-filter: blur(10px);
 
   & h1 {
     padding-top: 1rem;

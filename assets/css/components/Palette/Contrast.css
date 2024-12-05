@@ -1,6 +1,6 @@
 .Contrast {
     & main {
-        background: var(--color-white-pure);
+        background: var(--color-white);
         display: flex;
         flex-direction: column;
     }
