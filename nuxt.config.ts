@@ -16,20 +16,7 @@ export default defineNuxtConfig({
   css: [
     '~/assets/css/fonts.css',
     '~/assets/css/general.css',
-    '~/assets/css/components/Header.css',
-    '~/assets/css/components/Button.css',
-    '~/assets/css/components/Chip.css',
-    '~/assets/css/components/Input/InputBase.css',
-    '~/assets/css/components/Input/TextField.css',
-    '~/assets/css/components/Toolbar.css',
-    '~/assets/css/components/IconButton.css',
-    '~/assets/css/components/Tip.css',
-    '~/assets/css/components/TabCard.css',
-    '~/assets/css/components/Palette/CssCode.css',
-    '~/assets/css/components/Palette/ColorStrip.css',
-    '~/assets/css/components/Palette/ColorPalette.css',
-    '~/assets/css/components/Palette/Contrast.css',
-    '~/assets/css/pages/colors.css',
+    '~/assets/css/Tip.css',
   ],
 
   routeRules: {
@@ -51,7 +38,7 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: '2024-10-15',
-  modules: ['nuxt-shiki'],
+  modules: ['nuxt-shiki', '@nuxt/icon'],
   shiki: {
     defaultTheme: 'catppuccin-frappe',
     bundledLangs: ['css']

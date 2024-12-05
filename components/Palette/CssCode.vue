@@ -1,16 +1,5 @@
 <template>
   <section class="CssCode">
-    <section class="options">
-      <div class="top">
-        <div class="button-group">
-          <button v-for="s in codeStyles" :key="s" @click="changeCodeStyle(s)" :class="{ active: currentCodeStyle === s }">
-            {{s}}
-          </button>
-        </div>
-        <IconButton @click="copy" :icon="{clicked: 'check', base: 'copy'}" :tip="{clicked: 'Copied!', base: 'Copy Code', position: 'left'}" size="2em" />
-      </div>
-      <InputTextField label="Prefix" v-model="prefix" @change="() => { regenerate(); changePrefix() }" />
-    </section>
     <div class="code-wrapper">
       <Shiki lang="css" :code="code" />
     </div>

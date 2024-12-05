@@ -1,3 +1,5 @@
+import type { Color } from '~/types/Colors'
+
 export const generateContrast = (color : string) => {
   const [r, g, b] = color.match(/.{2}/g) || ['0', '0', '0']
   const brightness = Math.round((
@@ -25,11 +27,13 @@ export const hexToRgb = (hex : string) : [r : number, g : number, b : number] =>
   ] : [0, 0, 0]
 }
 
-export const generateColors = (color: string, shades: number[]) => {
+export const generateColors = (color: string, shades: number[]) : Color[] => {
   let useColor = color.replace('#', '')
   return sortShades(shades).map(shade => {
     if (shade === 0) return {
-      color: `#${useColor}`, contrast: generateContrast(useColor),
+      value: `#${useColor}`,
+      contrast: generateContrast(useColor),
+      name: getShadeName(shade),
     }
 
     let additionalColor = 0xff
@@ -52,7 +56,11 @@ export const generateColors = (color: string, shades: number[]) => {
 
     const fullColor = rgbCalc.join('')
     const contrast = generateContrast(fullColor)
-    return {color: `#${fullColor}`, contrast}
+    return {
+      value: `#${fullColor}`,
+      contrast,
+      name: getShadeName(shade),
+    }
   })
 }
 

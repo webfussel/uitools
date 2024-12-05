@@ -116,7 +116,7 @@ span.highlight {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    grid-template-columns: repeat(3, minmax(500px, 1fr));
     place-items: stretch;
     gap: 2rem;
 }
@@ -163,8 +163,16 @@ span.highlight {
     flex-direction: column;
 }
 
-.default-gap {
-    gap: 3rem;
+.flex-row {
+    display: flex;
+}
+
+.gap-default {
+    gap: 2rem;
+}
+
+.gap-small {
+    gap: .5rem;
 }
 
 .z-0 {
