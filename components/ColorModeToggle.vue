@@ -1,5 +1,5 @@
 <template>
-  <div class="toggle-switch" @click="toggle" :style="{ '--bg' : page.value, '--fg': page.contrast}">
+  <div class="toggle-switch" @click="toggle">
     <div class="toggle-knob" :class="{ active: isToggled }">
       <Icon :name="isToggled ? 'solar:moon-stars-broken' : 'solar:sun-2-broken'" />
     </div>
@@ -7,10 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import type { Color } from '~/types/Colors'
-
-const page = inject<Ref<Color>>('page')!
-
 const emit = defineEmits(['toggle'])
 
 const isToggled = ref(false)

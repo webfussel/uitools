@@ -32,7 +32,8 @@ export const generateColors = (color: string, shades: number[]) : Color[] => {
   let useColor = color.replace('#', '')
   return sortShades(shades).map(shade => {
     if (shade === 0) return {
-      value: `#${useColor}`,
+      hex: `#${useColor}`,
+      rgb: hexToRgb(`#${useColor}`),
       contrast: generateContrast(useColor),
       name: getShadeName(shade),
     }
@@ -58,7 +59,8 @@ export const generateColors = (color: string, shades: number[]) : Color[] => {
     const fullColor = rgbCalc.join('')
     const contrast = generateContrast(fullColor)
     return {
-      value: `#${fullColor}`,
+      hex: `#${fullColor}`,
+      rgb: hexToRgb(`#${fullColor}`),
       contrast,
       name: getShadeName(shade),
     }

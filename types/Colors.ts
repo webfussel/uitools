@@ -1,5 +1,6 @@
 export type Color = {
   name: string
-  value: string
+  hex: string
+  rgb: number[]
   contrast: string
 }

@@ -1,9 +1,5 @@
 <template>
-  <header class="Header content-paddings" :style="{
-    '--color-main': colorMain.value,
-    '--color-main-contrast': colorMain.contrast,
-    '--fg' : `${page.contrast}`
-  }">
+  <header class="Header content-paddings">
     <h1>
       <NuxtLink to="/">
         <Logo />
@@ -20,9 +16,6 @@
         </li>
       </ul>
     </nav>
-    <div class="toggle">
-      <ColorModeToggle @toggle="toggle" />
-    </div>
   </header>
 </template>
 
@@ -58,11 +51,7 @@ const navElements: NavElement[] = [
 ]
 
 const colorMain = inject<Ref<Color>>('colorMain')!
-const page = inject<Ref<Color>>('page')!
-
-const toggle = (toggled : boolean) => {
-  page.value = toggled ? darkTheme : lightTheme
-}
+const colorText = inject<Ref<Color>>('colorText')!
 </script>
 
 <style scoped>
@@ -108,7 +97,7 @@ const toggle = (toggled : boolean) => {
           align-items: center;
           gap: .5rem;
           border-bottom: 4px solid transparent;
-          color: var(--fg);
+          color: inherit;
 
           &.active {
             color: var(--color-main);

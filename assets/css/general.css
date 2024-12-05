@@ -81,6 +81,10 @@ body {
     background: var(--color-white);
 }
 
+#__nuxt {
+    min-height: 100dvh;
+}
+
 h1, h2, h3, h4, h5, h6 {
     text-align: left;
     font-family: 'Roboto Condensed', sans-serif;
