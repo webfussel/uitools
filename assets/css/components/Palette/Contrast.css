@@ -71,7 +71,6 @@
             flex-shrink: 1;
             padding: 0.5rem;
             cursor: pointer;
-            transition: 100ms ease-in-out;
             text-align: center;
             color: var(--contrast);
 
@@ -81,7 +80,6 @@
                 left: .5em;
                 top: 50%;
                 translate: 0 -50%;
-                transition: 100ms ease-in-out;
             }
 
             &.active .icon {

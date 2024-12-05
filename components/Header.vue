@@ -1,8 +1,12 @@
 <template>
-  <header class="Header content-paddings">
+  <header class="Header content-paddings" :style="{
+    '--color-main': colorMain.value,
+    '--color-main-contrast': colorMain.contrast,
+    '--fg' : `${page.contrast}`
+  }">
     <h1>
       <NuxtLink to="/">
-        <img src="/img/logo.svg" alt="UI Tools Logo" />
+        <Logo />
       </NuxtLink>
     </h1>
     <nav>
@@ -16,11 +20,16 @@
         </li>
       </ul>
     </nav>
+    <div class="toggle">
+      <ColorModeToggle @toggle="toggle" />
+    </div>
   </header>
 </template>
 
 <script lang="ts" setup>
-interface NavElement {
+import type { Color } from '~/types/Colors'
+
+type NavElement = {
   name: string
   to: string
   icon: string
@@ -47,6 +56,13 @@ const navElements: NavElement[] = [
     wip: true,
   },
 ]
+
+const colorMain = inject<Ref<Color>>('colorMain')!
+const page = inject<Ref<Color>>('page')!
+
+const toggle = (toggled : boolean) => {
+  page.value = toggled ? darkTheme : lightTheme
+}
 </script>
 
 <style scoped>
@@ -59,7 +75,6 @@ const navElements: NavElement[] = [
   position: sticky;
   top: 0;
   z-index: 20000;
-  background: var(--color-white-transparent);
   backdrop-filter: blur(10px);
 
   & h1 {
@@ -92,16 +107,22 @@ const navElements: NavElement[] = [
           display: flex;
           align-items: center;
           gap: .5rem;
-          transition: all 0.2s ease-in-out;
           border-bottom: 4px solid transparent;
+          color: var(--fg);
 
           &.active {
-            color: var(--color-blue);
-            border-bottom-color: var(--color-blue);
+            color: var(--color-main);
+            border-bottom-color: var(--color-main);
           }
         }
       }
     }
+  }
+
+  & .toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>

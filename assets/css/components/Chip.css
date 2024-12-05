@@ -19,7 +19,6 @@
         padding: .2em;
         border-radius: 999px;
         cursor: pointer;
-        transition: 150ms ease-in-out;
 
         &:hover {
             background: var(--color-blue-dark);

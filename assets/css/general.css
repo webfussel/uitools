@@ -136,7 +136,7 @@ span.highlight {
     padding-bottom: var(--v-padding);
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 .content-paddings {
@@ -203,8 +203,8 @@ span.highlight {
     right: -1rem;
     top: .5rem;
     padding: .2em 1em;
-    background: var(--color-blue);
-    color: var(--color-white);
+    background: var(--color-main);
+    color: var(--color-main-contrast);
     border-radius: 999px;
     font-size: .6rem;
 }

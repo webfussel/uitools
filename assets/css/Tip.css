@@ -4,9 +4,8 @@
     padding: .2em 1em;
     border-radius: var(--radius-standard);
     position: absolute;
-    transition: 150ms;
     white-space: nowrap;
-    background: var(--color-black-transparent);
+    background: var(--color-main);
     color: var(--color-white);
 
     &.top {

@@ -6,7 +6,6 @@
     padding: .5rem 1rem;
     display: flex;
     align-items: center;
-    transition: 150ms ease-in-out;
     color: var(--color-black);
 
     & > label {

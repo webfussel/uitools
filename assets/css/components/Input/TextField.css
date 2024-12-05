@@ -44,7 +44,6 @@
 
         & > label {
             position: absolute;
-            transition: 150ms ease-in-out;
             pointer-events: none;
             top: -.8rem;
             left: calc(1rem - 4px);

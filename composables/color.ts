@@ -1,7 +1,8 @@
 import type { Color } from '~/types/Colors'
 
 export const generateContrast = (color : string) => {
-  const [r, g, b] = color.match(/.{2}/g) || ['0', '0', '0']
+  const useColor = color.replace('#', '')
+  const [r, g, b] = useColor.match(/.{2}/g) || ['0', '0', '0']
   const brightness = Math.round((
       parseInt(parseInt(r, 16).toString(10), 10) * 299
     + parseInt(parseInt(g, 16).toString(10), 10) * 587
@@ -116,4 +117,9 @@ export const isHex = (color: string) : boolean => {
     return false
   }
   return (parseInt(noHash, 16).toString(16) === noHash.toLowerCase())
+}
+
+export const generateRandomColor = () => {
+  const single = () => Math.floor(Math.random() * 256).toString(16).padStart(2, '0')
+  return `#${single()}${single()}${single()}`
 }
