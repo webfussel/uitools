@@ -2,18 +2,9 @@
   <div class="App" :style="{
     background: background.hex,
     color: text.hex,
-    '--color-main': main.hex,
-    '--color-accent': accent.hex,
-    '--color-info': info.hex,
-    '--color-success': success.hex,
-    '--color-warning': warning.hex,
-    '--color-error': error.hex,
-    '--color-main-contrast': main.contrast,
-    '--color-accent-contrast': accent.contrast,
-    '--color-info-contrast': info.contrast,
-    '--color-success-contrast': success.contrast,
-    '--color-warning-contrast': warning.contrast,
-    '--color-error-contrast': error.contrast,
+    ...generateVariables(
+        background, text, main, accent, info, success, warning, error
+    ),
   }">
     <Header />
     <NuxtPage />
@@ -33,8 +24,10 @@ useHead({
 const generateFromColor = (color: string, name: string) : Color => ({
   name,
   hex: color,
-  rgb: hexToRgb(color),
-  contrast: generateContrast(color),
+  get dark () { return generateShade(this.hex, -60) },
+  get light () { return generateShade(this.hex, 60) },
+  get rgb () { return hexToRgb(this.hex)},
+  get contrast () { return generateContrast(this.hex) },
 })
 
 const backgroundInit = '#ffffff'
@@ -64,21 +57,14 @@ provide('colorSuccess', success)
 provide('colorWarning', warning)
 provide('colorError', error)
 
-const createWatcher = (ref : Ref<Color>) => {
-  watch(() => ref.value.hex, () => {
-    ref.value.contrast = generateContrast(ref.value.hex)
-    ref.value.rgb = hexToRgb(ref.value.hex)
-  })
-}
-
-createWatcher(background)
-createWatcher(text)
-createWatcher(main)
-createWatcher(accent)
-createWatcher(info)
-createWatcher(success)
-createWatcher(warning)
-createWatcher(error)
+const generateVariables = (...colors : Color[]) => colors.reduce<Record<string, string>>((result, color) => {
+  const low = color.name.toLowerCase()
+  result[`--color-${low}`] = color.hex
+  result[`--color-${low}-contrast`] = color.contrast
+  result[`--color-${low}-dark`] = color.dark
+  result[`--color-${low}-light`] = color.light
+  return result
+}, {} as Record<string, string>)
 
 </script>
 

@@ -14,9 +14,7 @@ type Props = {
 
 defineProps<Props>()
 
-const colorMain = inject<Ref<Color>>('colorMain')!
-const colorAccent = inject<Ref<Color>>('colorAccent')!
-const colorText = inject<Ref<Color>>('colorText')!
+const colorText = inject<Color>('colorText')!
 </script>
 
 <style scoped>

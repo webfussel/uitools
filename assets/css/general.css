@@ -100,11 +100,10 @@ h3 {
 
 a {
     text-decoration: none;
-    color: var(--color-black);
-    transition: var(--transition-time);
+    color: var(--color-main);
 
     &:hover {
-        color: var(--color-blue);
+        color: var(--color-main-hover);
     }
 }
 

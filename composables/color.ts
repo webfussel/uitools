@@ -1,5 +1,3 @@
-import type { Color } from '~/types/Colors'
-
 export const generateContrast = (color : string) => {
   const useColor = color.replace('#', '')
   const [r, g, b] = useColor.match(/.{2}/g) || ['0', '0', '0']
@@ -28,58 +26,33 @@ export const hexToRgb = (hex : string) : [r : number, g : number, b : number] =>
   ] : [0, 0, 0]
 }
 
-export const generateColors = (color: string, shades: number[]) : Color[] => {
+const clamp = (num: number, min: number, max: number) => Math.min(Math.max(num, min), max)
+
+export const generateShade = (color: string, shade: number) => {
   let useColor = color.replace('#', '')
-  return sortShades(shades).map(shade => {
-    if (shade === 0) return {
-      hex: `#${useColor}`,
-      rgb: hexToRgb(`#${useColor}`),
-      contrast: generateContrast(useColor),
-      name: getShadeName(shade),
-    }
+  let useShade = clamp(shade, -100, 100)
 
-    let additionalColor = 0xff
-    let calc = 1 / 100 * shade
+  if (useShade === 0) return color
 
-    if (shade < 0) {
-      additionalColor = 0x00
-      calc = -calc
-    }
+  let additionalColor = 0xff
+  let calc = 1 / 100 * shade
 
-    useColor = useColor.trim().replace('#', '')
-    useColor = useColor.length === 6 ? useColor : [...useColor].reduce((all, current) => all + current + current, '')
-
-    const regex = new RegExp(`.{${useColor.length / 3}}`, 'g')
-    const rgb = useColor.match(regex) || []
-    const rgbCalc = rgb.map(rgbColor => {
-      const calculated = Math.round(additionalColor * calc + parseInt(rgbColor, 16) * (1 - calc)).toString(16)
-      return calculated.padStart(2, '0')
-    })
-
-    const fullColor = rgbCalc.join('')
-    const contrast = generateContrast(fullColor)
-    return {
-      hex: `#${fullColor}`,
-      rgb: hexToRgb(`#${fullColor}`),
-      contrast,
-      name: getShadeName(shade),
-    }
-  })
-}
-
-export const getShadesWithZero = (shades : number[]) => {
-  const newShades = [...shades]
-  newShades.push(0)
-  return sortShades(newShades)
-}
-
-export const sortShades = (shades: number[]) => shades.toSorted((a, b) => a - b)
-
-export const getShadeName = (shade : number) => {
-  if (shade === 0) {
-    return 'Base'
+  if (shade < 0) {
+    additionalColor = 0x00
+    calc = -calc
   }
-  return shade > 0 ? `l-${shade}` : `d-${Math.abs(shade)}`
+
+  useColor = useColor.trim().replace('#', '')
+  useColor = useColor.length === 6 ? useColor : [...useColor].reduce((all, current) => all + current + current, '')
+
+  const regex = new RegExp(`.{${useColor.length / 3}}`, 'g')
+  const rgb = useColor.match(regex) || []
+  const rgbCalc = rgb.map(rgbColor => {
+    const calculated = Math.round(additionalColor * calc + parseInt(rgbColor, 16) * (1 - calc)).toString(16)
+    return calculated.padStart(2, '0')
+  })
+
+  return `#${rgbCalc.join('')}`
 }
 
 const luminance = (r: number, g: number, b: number): number => {

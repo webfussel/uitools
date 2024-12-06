@@ -49,9 +49,6 @@ const navElements: NavElement[] = [
     wip: true,
   },
 ]
-
-const colorMain = inject<Ref<Color>>('colorMain')!
-const colorText = inject<Ref<Color>>('colorText')!
 </script>
 
 <style scoped>
