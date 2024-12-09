@@ -2,6 +2,7 @@
   <div class="App" :style="{
     background: background.hex,
     color: text.hex,
+    '--hero-line': `1px solid rgba(${main.rgb.join(',')}, .1)`,
     ...generateVariables(
         background, text, main, accent, info, success, warning, error
     ),
@@ -28,6 +29,8 @@ const generateFromColor = (color: string, name: string) : Color => ({
   get light () { return generateShade(this.hex, 60) },
   get rgb () { return hexToRgb(this.hex)},
   get contrast () { return generateContrast(this.hex) },
+  get contrastDark () { return generateContrast(this.dark) },
+  get contrastLight () { return generateContrast(this.light) },
 })
 
 const backgroundInit = '#ffffff'
@@ -62,7 +65,9 @@ const generateVariables = (...colors : Color[]) => colors.reduce<Record<string, 
   result[`--color-${low}`] = color.hex
   result[`--color-${low}-contrast`] = color.contrast
   result[`--color-${low}-dark`] = color.dark
+  result[`--color-${low}-dark-contrast`] = color.contrastDark
   result[`--color-${low}-light`] = color.light
+  result[`--color-${low}-light-contrast`] = color.contrastLight
   return result
 }, {} as Record<string, string>)
 

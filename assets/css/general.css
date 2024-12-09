@@ -142,10 +142,28 @@ span.highlight {
     gap: 1rem;
 }
 
-.content-paddings {
-    --content-paddings: 15vw;
-    padding-left: var(--content-paddings);
-    padding-right: var(--content-paddings);
+.max-width {
+    --content-paddings: 50vw;
+    width: clamp(300px, var(--content-paddings), 1200px);
+}
+
+.full-width {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.small-max-width {
+    --content-paddings: 50vw;
+    width: clamp(300px, var(--content-paddings), 900px);
+}
+
+.center {
+    text-align: center;
+}
+
+.text-center {
+    text-align: center;
 }
 
 .full {
@@ -204,7 +222,7 @@ span.highlight {
 .badge {
     position: absolute;
     right: -1rem;
-    top: .5rem;
+    top: -.5rem;
     padding: .2em 1em;
     background: var(--color-main);
     color: var(--color-main-contrast);

@@ -1,27 +1,25 @@
 <template>
-  <header class="Header content-paddings">
-    <h1>
+  <header class="Header full-width">
+    <div class="max-width">
       <NuxtLink to="/">
         <Logo />
       </NuxtLink>
-    </h1>
-    <nav>
-      <ul>
-        <li v-for="nav in navElements" :key="nav.name">
-          <span v-if="nav.wip" class="badge">WIP</span>
-          <NuxtLink :to="nav.to" active-class="active">
-            <Icon :name="nav.icon"/>
-            <span>{{ nav.name }}</span>
-          </NuxtLink>
-        </li>
-      </ul>
-    </nav>
+      <nav>
+        <ul>
+          <li v-for="nav in navElements" :key="nav.name">
+            <span v-if="nav.wip" class="badge">WIP</span>
+            <NuxtLink :to="nav.to" active-class="active">
+              <Icon :name="nav.icon"/>
+              <span>{{ nav.name }}</span>
+            </NuxtLink>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </header>
 </template>
 
 <script lang="ts" setup>
-import type { Color } from '~/types/Colors'
-
 type NavElement = {
   name: string
   to: string
@@ -53,29 +51,22 @@ const navElements: NavElement[] = [
 
 <style scoped>
 .Header {
-  --padding: 2rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: stretch;
+  --padding: 1rem;
   position: sticky;
   top: 0;
   z-index: 20000;
   backdrop-filter: blur(10px);
+  border-bottom: var(--hero-line);
+  padding: var(--padding) 0;
 
-  & h1 {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    cursor: default;
-    user-select: none;
-
-    & img {
-      height: 40px;
-    }
+  & div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
   }
 
   & nav {
-    padding: 0 var(--padding);
     font-size: 1rem;
     line-height: 1.5;
 
@@ -93,12 +84,11 @@ const navElements: NavElement[] = [
           display: flex;
           align-items: center;
           gap: .5rem;
-          border-bottom: 4px solid transparent;
           color: inherit;
+          font-weight: bold;
 
           &.active {
             color: var(--color-main);
-            border-bottom-color: var(--color-main);
           }
         }
       }

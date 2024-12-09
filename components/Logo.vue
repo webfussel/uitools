@@ -18,7 +18,7 @@
 
 <style scoped>
 .Logo {
-  height: 50px;
+  height: 30px;
 }
 
 .logo-main {

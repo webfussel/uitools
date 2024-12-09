@@ -1,33 +1,27 @@
 <template>
   <section class="Colors content-paddings content">
-    <article class="color-fields flex-row gap-default">
-      <ColorField v-for="color in colors" :key="color.name" :name="color.name" v-model="color.hex" />
-    </article>
-    <article class="intro flex-col gap-default">
-      <h2 class="flex-col">Accessibility <strong>matters to all of us</strong></h2>
-      <h3>What does "Accessibility" mean?</h3>
-      <p>
-        Accessibility - or "A11y" as a numeronym, where the "11" represents the 11 letters between the "a" and the "y." - is often used in the context of web design, software development, and other fields to refer to making products, services, and environments usable for everyone, including people with disabilities.
-      </p>
-      <h3>Key aspects of a11y</h3>
-      <div class="info-cards gap-default">
-        <InfoCard header="Inclusivity">
-          Ensures that people with diverse abilities (visual, auditory, cognitive, or motor impairments)
-          can access and use a product or service.
-        </InfoCard>
-        <InfoCard header="Standards and Guidelines">
-          WCAG (Web Content Accessibility Guidelines) Provides technical recommendations for making web content accessible.
-        </InfoCard>
-        <InfoCard header="Broader Impact">
-          While focused on aiding individuals with disabilities, accessibility improvements often benefit all users.
-          For instance, captions help those in noisy environments, and well-structured websites load faster and perform better for everyone.
-        </InfoCard>
-      </div>
-      <p>
-        By prioritizing a11y, designers and developers create a more inclusive world, ensuring that technology and services are accessible
-        to as many people as possible.
-      </p>
-    </article>
+    <Hero>
+      <template #content>
+        <div class="hero-content">
+          <h1 class="center">
+            Explore <strong>Accessibility</strong> with the page you see.
+          </h1>
+          <p class="text-center">
+            UI Tools shows you directly which color combinations work and which don't. Create accessible color palettes in easy mode.
+          </p>
+          <UTButton
+            label="Let's go"
+            icon="solar:arrow-right-broken"
+            color="main"
+            type="solid"
+            icon-hover-effect="left-right"
+          />
+          <article class="color-fields flex-row gap-default">
+            <ColorField v-for="color in colors" :key="color.name" :name="color.name" v-model="color.hex" />
+          </article>
+        </div>
+      </template>
+    </Hero>
   </section>
 </template>
 
@@ -66,12 +60,19 @@ h2 {
   }
 }
 
-.intro {
-  margin-top: 3rem;
+.hero-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.info-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+h1 {
+  font-size: 5rem;
+}
+
+strong {
+  color: var(--color-main);
 }
 </style>
