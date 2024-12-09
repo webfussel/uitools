@@ -65,7 +65,7 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   background: var(--color-background);
-  transition: background 300ms;
+  transition: background 400ms;
 
   &:hover {
     background: var(--color-main-light);
