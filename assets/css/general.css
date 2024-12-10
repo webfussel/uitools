@@ -35,27 +35,8 @@
 }
 
 :root {
-    --spacing-standard: 3rem;
     --transition-time: 250ms;
-
-    --radius-standard: 10px;
-
-    --color-white: #fff;
-    --color-white-transparent: rgba(255, 255, 255, 0.5);
-
-    --color-green: #0a750a;
-    --color-red: #900;
-
-    --color-black: #07171a;
-    --color-black-transparent: #07171aaa;
-
-    --color-grey-dark: #666;
-    --color-grey-darker: #333;
-
-    --color-blue-light: #339db0;
-    --color-blue: #1e5c68;
-    --color-blue-dark: #184951;
-    --color-blue-black: #07161a;
+    --radius-standard: .5rem;
 }
 
 html,
@@ -77,8 +58,6 @@ html {
 
 body {
     font-family: 'Open Sans', sans-serif;
-    color: var(--color-black);
-    background: var(--color-white);
 }
 
 #__nuxt {
@@ -113,23 +92,11 @@ ul {
     display: flex;
 }
 
-span.highlight {
-    color: var(--color-blue);
-}
-
 .grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(500px, 1fr));
     place-items: stretch;
     gap: 2rem;
-}
-
-.card {
-    padding: 2rem;
-    background: var(--color-white);
-    border-radius: var(--radius-standard);
-    min-width: 300px;
-    text-align: center;
 }
 
 .content {

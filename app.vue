@@ -11,7 +11,7 @@
         background, text, main, accent, info, success, warning, error
     ),
   }">
-    <Header />
+    <UTHeader />
     <SectionColors />
   </div>
 </template>
@@ -29,12 +29,16 @@ useHead({
 const generateFromColor = (color: string, name: string) : Color => ({
   name,
   hex: color,
+  get darkest () { return generateShade(this.hex, -50) },
   get dark () { return generateShade(this.hex, -20) },
   get light () { return generateShade(this.hex, 60) },
+  get lightest () { return generateShade(this.hex, 85) },
   get rgb () { return hexToRgb(this.hex)},
   get contrast () { return generateContrast(this.hex) },
+  get contrastDarkest () { return generateContrast(this.darkest) },
   get contrastDark () { return generateContrast(this.dark) },
   get contrastLight () { return generateContrast(this.light) },
+  get contrastLightest () { return generateContrast(this.lightest) },
 })
 
 const backgroundInit = '#ffffff'
@@ -75,10 +79,14 @@ const generateVariables = (...colors : Color[]) => colors.reduce<Record<string, 
   const low = color.name.toLowerCase()
   result[`--color-${low}`] = color.hex
   result[`--color-${low}-contrast`] = color.contrast
+  result[`--color-${low}-darkest`] = color.darkest
+  result[`--color-${low}-darkest-contrast`] = color.contrastDarkest
   result[`--color-${low}-dark`] = color.dark
   result[`--color-${low}-dark-contrast`] = color.contrastDark
   result[`--color-${low}-light`] = color.light
   result[`--color-${low}-light-contrast`] = color.contrastLight
+  result[`--color-${low}-lightest`] = color.lightest
+  result[`--color-${low}-lightest-contrast`] = color.contrastLightest
   return result
 }, {} as Record<string, string>)
 

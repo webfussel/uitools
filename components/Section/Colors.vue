@@ -1,8 +1,14 @@
 <template>
   <section class="Colors content-paddings content">
-    <Hero>
+
+    <UTHero>
       <template #content>
         <div class="hero-content">
+          <UTMessageBar
+              icon="solar:info-circle-broken"
+              message="This site is still under construction and in a very early state. Feel free to return whenever you like!"
+              type="info"
+          />
           <h1 class="center">
             Explore <strong>Accessibility</strong> with the page you see.
           </h1>
@@ -17,16 +23,17 @@
               icon-hover-effect="left-right"
           />
           <article class="color-fields flex-row gap-default">
-            <ColorField v-for="color in colors" :key="color.name" :name="color.name" v-model="color.hex" />
+            <UTColorField v-for="color in colors" :key="color.name" :name="color.name" v-model="color.hex" />
           </article>
         </div>
       </template>
-    </Hero>
+    </UTHero>
   </section>
 </template>
 
 <script setup lang="ts">
 import type { Color } from '~/types/Colors'
+import UTMessageBar from '~/components/UTMessageBar.vue'
 
 useHead({
   titleTemplate: (title ?: string) => `${title ? `${title} - ` : ''}Colors`

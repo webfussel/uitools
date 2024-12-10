@@ -2,12 +2,11 @@
   <header class="Header full-width">
     <div class="max-width">
       <NuxtLink to="/">
-        <Logo />
+        <UTLogo />
       </NuxtLink>
       <nav>
         <ul>
           <li v-for="nav in navElements" :key="nav.name">
-            <span v-if="nav.wip" class="badge">WIP</span>
             <NuxtLink :to="nav.to" active-class="active">
               <Icon :name="nav.icon"/>
               <span>{{ nav.name }}</span>
@@ -31,27 +30,23 @@ type NavElement = {
   name: string
   to: string
   icon: string
-  wip: boolean
 }
 
 const navElements: NavElement[] = [
   {
     name: 'Colors',
-    to: '/colors',
+    to: '#colors',
     icon: 'solar:pallete-2-broken',
-    wip: false,
   },
   {
     name: 'Fonts',
-    to: '/sizing',
+    to: '#sizing',
     icon: 'solar:text-cross-broken',
-    wip: true,
   },
   {
     name: 'Spacing',
-    to: '/spacing',
+    to: '#spacing',
     icon: 'solar:align-horizonta-spacing-broken',
-    wip: true,
   },
 ]
 

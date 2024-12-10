@@ -24,7 +24,7 @@ button {
   align-items: center;
   gap: .5rem;
   padding: .5rem 1rem;
-  border-radius: .5rem;
+  border-radius: var(--radius-standard);
   width: fit-content;
   transition: background var(--transition-time), color var(--transition-time);
   cursor: pointer;

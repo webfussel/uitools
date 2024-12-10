@@ -1,9 +1,0 @@
-.CssCode {
-    & .code-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 2em 0;
-        background: #303446;
-    }
-}

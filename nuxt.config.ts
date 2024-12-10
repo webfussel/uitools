@@ -6,9 +6,6 @@ export default defineNuxtConfig({
     prerender: {
       routes: [
         '/',
-        '/colors',
-        '/sizing',
-        '/spacing',
       ]
     }
   },
@@ -16,14 +13,10 @@ export default defineNuxtConfig({
   css: [
     '~/assets/css/fonts.css',
     '~/assets/css/general.css',
-    '~/assets/css/Tip.css',
   ],
 
   routeRules: {
     '/': { prerender: true },
-    '/colors': { prerender: true },
-    '/sizing': { prerender: true },
-    '/spacing': { prerender: true },
   },
 
   app: {
