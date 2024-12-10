@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-const rows = ref(15)
+const rows = 20
 const cols = ref(0)
 const grid = ref<HTMLElement>()
 const cellSize = 50
@@ -29,14 +29,11 @@ onMounted(() => {
 onUnmounted(() => {
   resizeObserver.disconnect()
 })
-
-
 </script>
 
 <style scoped>
 .grid-container {
   --border: var(--hero-line);
-
   position: absolute;
   left: 0;
   top: 0;

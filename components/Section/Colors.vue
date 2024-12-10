@@ -1,6 +1,5 @@
 <template>
   <section class="Colors content-paddings content">
-
     <UTHero>
       <template #content>
         <div class="hero-content">
@@ -61,6 +60,10 @@ const colors = [
 </script>
 
 <style scoped>
+.Colors {
+  border-bottom: var(--hero-line);
+}
+
 h2 {
   & strong {
     font-size: 2rem;
