@@ -20,6 +20,6 @@ We have not yet decided on a contribution scheme.
 This project is licensed under the GNU AFFERO GENERAL PUBLIC LICENSE. See the `LICENSE` file for details.
 
 ## Contact
-For questions feel free to reach out to me on social media.
-Bluesky: https://bsky.app/profile/webfussel.de
+For questions feel free to reach out to me on social media.  
+Bluesky: https://bsky.app/profile/webfussel.de  
 Mastodon: https://mastodontech.de/@webfussel
