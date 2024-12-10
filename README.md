@@ -1,75 +1,25 @@
-# Nuxt 3 Minimal Starter
+# Project Name
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Table of Contents
+- [About the Project](#about-the-project)
+- [Preview](#preview)
+- [License](#license)
+- [Contact](#contact)
 
-## Setup
+## About the Project
+UI Tools is a SPA where users can change colors, fonts and margins on the fly and get feedback right on the page about accessibility. The project
+is open source and everyone is welcome to contribute in any way.
 
-Make sure to install the dependencies:
+## Preview
+https://webfussel.github.io/uitools/
 
-```bash
-# npm
-npm install
+## Contributing
+We have not yet decided on a contribution scheme.
 
-# pnpm
-pnpm install
+## License
+This project is licensed under the GNU AFFERO GENERAL PUBLIC LICENSE. See the `LICENSE` file for details.
 
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Contact
+For questions feel free to reach out to me on social media.
+Bluesky: https://bsky.app/profile/webfussel.de
+Mastodon: https://mastodontech.de/@webfussel
