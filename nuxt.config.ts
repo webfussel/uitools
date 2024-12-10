@@ -23,6 +23,7 @@ export default defineNuxtConfig({
     head: {
       htmlAttrs: { lang: 'de' },
       link: [
+        { rel: 'icon', href: '/favicon.ico' },
         { rel: 'preload', crossorigin: 'anonymous', as: 'font', href: '/fonts/opensans.woff2', type: 'font/woff2' },
         { rel: 'preload', crossorigin: 'anonymous', as: 'font', href: '/fonts/roboto_con_bold.woff2', type: 'font/woff2' },
         { rel: 'preload', crossorigin: 'anonymous', as: 'font', href: '/fonts/roboto_con_reg.woff2', type: 'font/woff2' },
