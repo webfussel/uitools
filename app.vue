@@ -12,7 +12,7 @@
     ),
   }">
     <Header />
-    <NuxtPage />
+    <SectionColors />
   </div>
 </template>
 

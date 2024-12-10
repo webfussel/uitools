@@ -10,11 +10,11 @@
             UI Tools shows you directly which color combinations work and which don't. Create accessible color palettes in easy mode.
           </p>
           <UTButton
-            label="Let's go"
-            icon="solar:arrow-right-broken"
-            color="main"
-            type="solid"
-            icon-hover-effect="left-right"
+              label="Let's go"
+              icon="solar:arrow-right-broken"
+              color="main"
+              type="solid"
+              icon-hover-effect="left-right"
           />
           <article class="color-fields flex-row gap-default">
             <ColorField v-for="color in colors" :key="color.name" :name="color.name" v-model="color.hex" />
