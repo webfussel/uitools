@@ -3,6 +3,10 @@
     background: background.hex,
     color: text.hex,
     '--hero-line': `1px solid rgba(${main.rgb.join(',')}, .1)`,
+    '--color-main-hover': isDarkBg ? main.light : main.dark,
+    '--color-main-hover-contrast': isDarkBg ? main.contrastLight : main.contrastDark,
+    '--color-accent-hover': isDarkBg ? main.light : main.dark,
+    '--color-accent-hover-contrast': isDarkBg ? main.contrastLight : main.contrastDark,
     ...generateVariables(
         background, text, main, accent, info, success, warning, error
     ),
@@ -25,7 +29,7 @@ useHead({
 const generateFromColor = (color: string, name: string) : Color => ({
   name,
   hex: color,
-  get dark () { return generateShade(this.hex, -60) },
+  get dark () { return generateShade(this.hex, -20) },
   get light () { return generateShade(this.hex, 60) },
   get rgb () { return hexToRgb(this.hex)},
   get contrast () { return generateContrast(this.hex) },
@@ -59,6 +63,13 @@ provide('colorInfo', info)
 provide('colorSuccess', success)
 provide('colorWarning', warning)
 provide('colorError', error)
+
+const isDarkBg = ref(false)
+provide('isDarkBg', isDarkBg)
+
+watch(background.value, () => {
+  isDarkBg.value = background.value.contrast === '#ffffff'
+})
 
 const generateVariables = (...colors : Color[]) => colors.reduce<Record<string, string>>((result, color) => {
   const low = color.name.toLowerCase()

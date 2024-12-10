@@ -15,6 +15,13 @@
           </li>
         </ul>
       </nav>
+      <nav class="socials">
+        <ul>
+          <li v-for="social in socials" :key="social.name">
+            <Icon :name="social.icon" size="1.5em" />
+          </li>
+        </ul>
+      </nav>
     </div>
   </header>
 </template>
@@ -47,6 +54,19 @@ const navElements: NavElement[] = [
     wip: true,
   },
 ]
+
+const socials = [
+  {
+    name: 'GitHub',
+    icon: 'lineicons:github',
+    link: 'https://github.com/webfussel',
+  },
+  {
+    name: 'Ko-Fi',
+    icon: 'simple-icons:kofi',
+    link: 'https://ko-fi.com/webfussel',
+  },
+]
 </script>
 
 <style scoped>
@@ -73,7 +93,7 @@ const navElements: NavElement[] = [
     & ul {
       display: flex;
       list-style: none;
-      gap: 6rem;
+      gap: 3rem;
       height: 100%;
 
       & li {
@@ -84,8 +104,12 @@ const navElements: NavElement[] = [
           display: flex;
           align-items: center;
           gap: .5rem;
-          color: inherit;
           font-weight: bold;
+          color: var(--color-text);
+
+          &:hover {
+            color: var(--color-main-hover);
+          }
 
           &.active {
             color: var(--color-main);
@@ -95,10 +119,12 @@ const navElements: NavElement[] = [
     }
   }
 
-  & .toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  nav.socials ul {
+    gap: 1rem;
+
+    & li {
+      align-items: center;
+    }
   }
 }
 </style>

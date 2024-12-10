@@ -26,7 +26,7 @@ button {
   padding: .5rem 1rem;
   border-radius: .5rem;
   width: fit-content;
-  transition: background 250ms, color 250ms;
+  transition: background var(--transition-time), color var(--transition-time);
   cursor: pointer;
   font-weight: bold;
 
@@ -47,15 +47,15 @@ button {
 button.main {
   --color: var(--color-main);
   --contrast: var(--color-main-contrast);
-  --hover-color: var(--color-main-light);
-  --hover-contrast: var(--color-main-light-contrast);
+  --hover-color: var(--color-main-hover);
+  --hover-contrast: var(--color-main-hover-contrast);
 }
 
 button.accent {
   --color: var(--color-accent);
   --contrast: var(--color-accent-contrast);
-  --hover-color: var(--color-accent-light);
-  --hover-contrast: var(--color-accent-light-contrast);
+  --hover-color: var(--color-accent-hover);
+  --hover-contrast: var(--color-accent-hover-contrast);
 }
 
 button.solid {

@@ -35,7 +35,7 @@ const toggle = () => {
   position: absolute;
   top: 2px;
   left: 2px;
-  transition: left 300ms, transform 300ms;
+  transition: left var(--transition-time), transform var(--transition-time);
   display: flex;
   justify-content: center;
   align-items: center;
