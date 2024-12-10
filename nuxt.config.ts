@@ -3,7 +3,7 @@
 const base = process.env.NUXT_APP_BASE_URL ? process.env.NUXT_APP_BASE_URL.slice(0, -1) : ''
 
 export default defineNuxtConfig({
-  ssr: false,
+  ssr: true,
 
   nitro: {
     prerender: {
@@ -26,7 +26,7 @@ export default defineNuxtConfig({
     head: {
       htmlAttrs: { lang: 'de' },
       link: [
-        { rel: 'icon', href: process.env.NUXT_APP_BASE_URL + '/favicon.ico' },
+        { rel: 'icon', href: base + '/favicon.ico' },
         { rel: 'preload', crossorigin: 'anonymous', as: 'font', href: base + '/fonts/opensans.woff2', type: 'font/woff2' },
         { rel: 'preload', crossorigin: 'anonymous', as: 'font', href: base + '/fonts/roboto_con_bold.woff2', type: 'font/woff2' },
         { rel: 'preload', crossorigin: 'anonymous', as: 'font', href: base + '/fonts/roboto_con_reg.woff2', type: 'font/woff2' },

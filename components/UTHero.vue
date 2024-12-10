@@ -17,11 +17,12 @@ const cols = ref(0)
 const grid = ref<HTMLElement>()
 const cellSize = 50
 
-const resizeObserver = new ResizeObserver(([gridContainer]) => {
-  cols.value = Math.ceil(gridContainer.contentRect.width / cellSize)
-})
+let resizeObserver : ResizeObserver
 
 onMounted(() => {
+  resizeObserver = new ResizeObserver(([gridContainer]) => {
+    cols.value = Math.ceil(gridContainer.contentRect.width / cellSize)
+  })
   resizeObserver.observe(grid.value!)
 })
 
