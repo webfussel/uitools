@@ -1,4 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
+const base = process.env.NUXT_APP_BASE_URL || ''
+
 export default defineNuxtConfig({
   ssr: false,
 
@@ -23,10 +26,10 @@ export default defineNuxtConfig({
     head: {
       htmlAttrs: { lang: 'de' },
       link: [
-        { rel: 'icon', href: '/favicon.ico' },
-        { rel: 'preload', crossorigin: 'anonymous', as: 'font', href: '/fonts/opensans.woff2', type: 'font/woff2' },
-        { rel: 'preload', crossorigin: 'anonymous', as: 'font', href: '/fonts/roboto_con_bold.woff2', type: 'font/woff2' },
-        { rel: 'preload', crossorigin: 'anonymous', as: 'font', href: '/fonts/roboto_con_reg.woff2', type: 'font/woff2' },
+        { rel: 'icon', href: process.env.NUXT_APP_BASE_URL + '/favicon.ico' },
+        { rel: 'preload', crossorigin: 'anonymous', as: 'font', href: base + '/fonts/opensans.woff2', type: 'font/woff2' },
+        { rel: 'preload', crossorigin: 'anonymous', as: 'font', href: base + '/fonts/roboto_con_bold.woff2', type: 'font/woff2' },
+        { rel: 'preload', crossorigin: 'anonymous', as: 'font', href: base + '/fonts/roboto_con_reg.woff2', type: 'font/woff2' },
       ]
     }
   },
