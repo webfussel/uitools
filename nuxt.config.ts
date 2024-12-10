@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
-const base = process.env.NUXT_APP_BASE_URL || ''
+const base = process.env.NUXT_APP_BASE_URL ? process.env.NUXT_APP_BASE_URL.slice(0, -1) : ''
 
 export default defineNuxtConfig({
   ssr: false,
