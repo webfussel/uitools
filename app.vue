@@ -97,6 +97,6 @@ const generateVariables = (...colors : Color[]) => colors.reduce<Record<string, 
 
 <style scoped>
 .App {
-  min-height: 300dvh;
+  min-height: 100dvh;
 }
 </style>
