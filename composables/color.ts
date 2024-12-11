@@ -68,7 +68,6 @@ const luminance = (r: number, g: number, b: number): number => {
 }
 
 const calculateRatio = (color1: Color, color2: Color) : number => {
-  console.log(color1, color2)
   // calculate the relative luminance
   const [luminance1, luminance2] = [luminance(...color1.rgb), luminance(...color2.rgb)]
 
