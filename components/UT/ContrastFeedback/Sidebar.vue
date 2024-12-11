@@ -131,6 +131,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background var(--transition-time), color var(--transition-time);
 
   &.success {
     border-color: var(--color-success);

@@ -23,6 +23,7 @@ defineProps<Props>()
   gap: 1rem;
   display: flex;
   align-items: center;
+  transition: background var(--transition-time), color var(--transition-time);
 }
 
 .MessageBar.success {
