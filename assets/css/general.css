@@ -140,7 +140,7 @@ ul {
 
 .highlight {
     outline: 10px solid var(--color-accent);
-    transition: outline 500ms ease-in-out;
+    transition: outline var(--transition-time) ease-in-out;
 }
 
 .highlight.fading {

@@ -57,7 +57,7 @@ const unhighlightElement = (element: HTMLElement) => {
   fadeTimeout = setTimeout(() => {
     element.classList.remove('fading')
     element.classList.remove('highlight')
-  }, 500)
+  }, 300)
 }
 </script>
 
