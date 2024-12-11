@@ -41,6 +41,7 @@ export default defineNuxtConfig({
     bundledLangs: ['css']
   },
   icon: {
+    serverBundle: false,
     clientBundle: {
       scan: true,
     },
