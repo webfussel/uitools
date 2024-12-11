@@ -4,9 +4,9 @@
       <template #content>
         <div class="hero-content">
           <UTMessageBar
-              icon="solar:info-circle-broken"
-              message="This site is still under construction and in a very early state. Feel free to return whenever you like!"
-              type="info"
+            icon="solar:info-circle-broken"
+            message="This site is still under construction and in a very early state. Feel free to return whenever you like!"
+            type="info"
           />
           <h1 class="center">
             Explore <strong>Accessibility</strong> with the page you see.
@@ -15,11 +15,11 @@
             UI Tools shows you directly which color combinations work and which don't. Create accessible color palettes in easy mode.
           </p>
           <UTButton
-              label="Let's go"
-              icon="solar:arrow-right-broken"
-              color="main"
-              type="solid"
-              icon-hover-effect="left-right"
+            label="Let's go"
+            icon="solar:arrow-right-broken"
+            color="main"
+            type="solid"
+            icon-hover-effect="left-right"
           />
           <article class="color-fields flex-row gap-default">
             <UTColorField v-for="color in colors" :key="color.name" :name="color.name" v-model="color.hex" />
@@ -32,7 +32,6 @@
 
 <script setup lang="ts">
 import type { Color } from '~/types/Colors'
-import UTMessageBar from '~/components/UTMessageBar.vue'
 
 useHead({
   titleTemplate: (title ?: string) => `${title ? `${title} - ` : ''}Colors`

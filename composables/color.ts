@@ -1,3 +1,5 @@
+import type { Color } from '~/types/Colors'
+
 export const generateContrast = (color : string) => {
   const useColor = color.replace('#', '')
   const [r, g, b] = useColor.match(/.{2}/g) || ['0', '0', '0']
@@ -65,25 +67,32 @@ const luminance = (r: number, g: number, b: number): number => {
   return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722
 }
 
-const calculateRatio = (color1: string, color2: string) : number => {
+const calculateRatio = (color1: Color, color2: Color) : number => {
+  console.log(color1, color2)
   // calculate the relative luminance
-  const [luminance1, luminance2] = [luminance(...hexToRgb(color1)), luminance(...hexToRgb(color2))]
+  const [luminance1, luminance2] = [luminance(...color1.rgb), luminance(...color2.rgb)]
 
   // calculate the color contrast ratio
   const [bigger, smaller] = luminance1 > luminance2 ? [luminance1, luminance2] : [luminance2, luminance1]
   return (smaller + 0.05) / (bigger + 0.05)
 }
 
-type CheckComplianceReturnType = [string, boolean][]
+type CheckComplianceReturnType = Record<'AA' | 'AAA', boolean>
 
-export const checkCompliance = (color1: string, color2: string) : CheckComplianceReturnType => {
+export const checkComplianceNormal = (color1: Color, color2: Color) : CheckComplianceReturnType => {
   const ratio = calculateRatio(color1, color2)
-  return [
-    ['AA Normal', ratio < 1 / 4],
-    ['AAA Normal', ratio < 1 / 7],
-    ['AA Large', ratio < 1 / 3],
-    ['AAA Large', ratio < 1 / 4.5],
-  ]
+  return {
+    'AA': ratio < 1 / 4,
+    'AAA': ratio < 1 / 7,
+  }
+}
+
+export const checkComplianceLarge = (color1: Color, color2: Color) : CheckComplianceReturnType => {
+  const ratio = calculateRatio(color1, color2)
+  return {
+    'AA': ratio < 1 / 3,
+    'AAA': ratio < 1 / 4.5,
+  }
 }
 
 export const isHex = (color: string) : boolean => {

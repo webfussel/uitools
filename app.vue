@@ -11,6 +11,9 @@
         background, text, main, accent, info, success, warning, error
     ),
   }">
+    <ClientOnly>
+      <UTContrastFeedbackSidebar />
+    </ClientOnly>
     <UTHeader />
     <SectionColors />
   </div>
@@ -94,6 +97,6 @@ const generateVariables = (...colors : Color[]) => colors.reduce<Record<string, 
 
 <style scoped>
 .App {
-  min-height: 100dvh;
+  min-height: 300dvh;
 }
 </style>

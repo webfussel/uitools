@@ -9,7 +9,7 @@
 type Props = {
   label: string
   icon: string
-  iconHoverEffect: 'left-right'
+  iconHoverEffect: 'left-right' | 'pulse'
   color: 'main' | 'accent'
   type: 'solid' | 'outline' | 'ghost'
 }
@@ -33,6 +33,10 @@ button {
   &:hover .icon.animation-left-right {
     animation: left-right 500ms alternate infinite;
   }
+
+  &:hover .icon.animation-pulse {
+    animation: pulse 500ms alternate infinite;
+  }
 }
 
 @keyframes left-right {
@@ -41,6 +45,16 @@ button {
   }
   to {
     transform: translateX(10%);
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.1);
   }
 }
 

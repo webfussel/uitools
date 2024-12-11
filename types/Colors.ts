@@ -5,7 +5,7 @@ export type Color = {
   dark: string
   light: string
   lightest: string
-  rgb: number[]
+  rgb: [r : number, g : number, b : number]
   contrast: string
   contrastDarkest: string
   contrastDark: string

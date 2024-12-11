@@ -1,14 +1,14 @@
 <template>
   <aside class="MessageBar" :class="[type]">
     <Icon :name="icon" size="1.5em" />
-    <p>{{ message }}</p>
+    <p v-if="message">{{ message }}</p>
   </aside>
 </template>
 
 <script setup lang="ts">
 type Props = {
   icon: string
-  message: string
+  message?: string
   type: 'success' | 'error' | 'warning' | 'info'
 }
 

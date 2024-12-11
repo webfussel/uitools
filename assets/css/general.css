@@ -138,6 +138,15 @@ ul {
     min-height: 100vh;
 }
 
+.highlight {
+    outline: 10px solid var(--color-accent);
+    transition: outline 500ms ease-in-out;
+}
+
+.highlight.fading {
+    outline: 0 solid transparent;
+}
+
 .margin-top {
     margin-top: 3rem;
 }
