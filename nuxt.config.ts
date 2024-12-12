@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
-const base = process.env.NUXT_APP_BASE_URL ? process.env.NUXT_APP_BASE_URL.slice(0, -1) : ''
+const base = process.env.NUXT_APP_BASE_URL ?? ''
 
 export default defineNuxtConfig({
   ssr: true,
@@ -42,7 +42,7 @@ export default defineNuxtConfig({
   },
   icon: {
     provider: 'iconify',
-    serverBundle: false,
+    serverBundle: 'local',
     clientBundle: {
       scan: true,
     },
